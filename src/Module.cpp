@@ -7,8 +7,9 @@
 
 #include <Module.h>
 #if VERSION >= 2L
+#define __PRINTNAME(var) #var
 Module::Module(Resources* resources,Type type,bool alternate)
-:type(type){
+:type(type),contract(__PRINTNAME(type),0,0){
 	this->resources=resources;
 	next=previous=0;
 	disable=false;

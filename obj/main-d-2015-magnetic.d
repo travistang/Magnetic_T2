@@ -34,14 +34,14 @@ obj/main-d-2015-magnetic.o: src/main.cpp \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_quad_decoder.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/quad_decoder_interface.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/ftm_quad_decoder.h \
- inc/TLedModule.h inc/Module.h inc/Resources.h inc/tLed.h \
- inc/TMagneticSensorModule.h inc/Module.h inc/TMagneticSensor.h \
- inc/TBluetoothModule.h inc/TBluetooth.h \
+ inc/TLedModule.h inc/Module.h inc/Resources.h inc/Contract.h \
+ inc/Protocol.h inc/tLed.h inc/TMagneticSensorModule.h inc/Module.h \
+ inc/TMagneticSensor.h inc/TBluetoothModule.h inc/TBluetooth.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/jy_mcu_bt_106.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/uart.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/uart_device.h inc/Protocol.h \
- inc/TMotorModule.h inc/TServoModule.h inc/TServo.h \
- /Users/Travis/git/libsccc/inc/libsc/trs_d05.h \
+ inc/TOutsourcer.h inc/contract.h inc/TMotorModule.h inc/TServoModule.h \
+ inc/TServo.h /Users/Travis/git/libsccc/inc/libsc/trs_d05.h \
  /Users/Travis/git/libsccc/inc/libsc/servo.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_pwm.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/pit.h \
@@ -60,4 +60,4 @@ obj/main-d-2015-magnetic.o: src/main.cpp \
  /Users/Travis/git/libsccc/inc/libbase/k60/dac.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/ftm.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/i2c.h inc/Config.h \
- inc/TRecordModule.h
+ inc/TRecordModule.h inc/TBluetooth.h

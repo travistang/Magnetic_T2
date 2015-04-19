@@ -10,6 +10,7 @@
 
 #include <libsc/k60/jy_mcu_bt_106.h>
 #include <libbase/k60/uart.h>
+#include <stdlib.h>
 #include "Protocol.h"
 #include "libbase/helper.h"
 using namespace LIBBASE_NS;
@@ -21,6 +22,7 @@ public:
 	TBluetooth(OnReceiveListener listener);
 	std::string	composeMessage(int index,float value,bool plain=false);
 	Protocol protocol;
+
 };
 
 #endif /* TBLUETOOTH_H_ */

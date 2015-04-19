@@ -8,6 +8,7 @@
 #ifndef INC_MODULE_H_
 #define INC_MODULE_H_
 #include "Resources.h"
+#include "Contract.h"
 class Module {
 public:
 	enum			Type
@@ -48,10 +49,10 @@ public:
 	virtual void 	operator~ ();
 	virtual void	operator>(const TimerInt& interval);
 	virtual void	operator!();
-	Type		 getType();
+	Type		 	getType();
 	Module* getNext(Type type);
 protected:
-
+	Contract	  contract;
 	const Type	  type;
 	bool		 passFlag;
 	bool		 isTimerSet;

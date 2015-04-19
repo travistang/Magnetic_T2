@@ -24,7 +24,8 @@ obj/TServoModule-d-2015-magnetic.o: src/TServoModule.cpp \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TServo.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
+ inc/Protocol.h inc/TServo.h \
  /Users/Travis/git/libsccc/inc/libsc/trs_d05.h \
  /Users/Travis/git/libsccc/inc/libsc/servo.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_pwm.h \

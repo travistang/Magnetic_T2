@@ -174,9 +174,11 @@ public:
 	void 			checkAutomat()
 					{
 						if(m_refreshInterval>=(libsc::System::Time()-m_lastUpdate)
-								&&!m_automatList.empty()){
+								&&!m_automatList.empty())
+						{
 							for(typename AutomatList::iterator it=m_automatList.begin();
-									it!=m_automatList.end();it++){
+									it!=m_automatList.end();it++)
+							{
 								*it;
 							}
 							m_lastUpdate=libsc::System::Time();

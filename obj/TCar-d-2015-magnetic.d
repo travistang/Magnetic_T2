@@ -24,12 +24,13 @@ obj/TCar-d-2015-magnetic.o: src/TCar.cpp inc/TCar.h inc/Config.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/tLed.h \
- /Users/Travis/git/libsccc/inc/libsc/led.h inc/TBluetoothModule.h \
- inc/TBluetooth.h /Users/Travis/git/libsccc/inc/libsc/k60/jy_mcu_bt_106.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
+ inc/Protocol.h inc/tLed.h /Users/Travis/git/libsccc/inc/libsc/led.h \
+ inc/TBluetoothModule.h inc/TBluetooth.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/jy_mcu_bt_106.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/uart.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/uart_device.h inc/Protocol.h \
- inc/TLcdModule.h inc/TLcd.h \
+ inc/TOutsourcer.h inc/contract.h inc/TLcdModule.h inc/TLcd.h \
  /Users/Travis/git/libsccc/inc/libsc/battery_meter.h \
  /Users/Travis/git/libsccc/inc/libsc/lcd.h \
  /Users/Travis/git/libsccc/inc/libsc/lcd_console.h \

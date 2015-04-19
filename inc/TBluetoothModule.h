@@ -10,10 +10,11 @@
 
 #include "Module.h"
 #include "TBluetooth.h"
+#include "TOutsourcer.h"
 #include <cstring>
 using namespace LIBSC_NS;
 using namespace LIBBASE_NS;
-class TBluetoothModule: public Module {
+class TBluetoothModule: public Module ,public TOutsourcer{
 public:
 	typedef std::function<bool(const std::vector<Byte>&)> OnReceiveListener;
 	TBluetoothModule(Resources* resources);
@@ -27,12 +28,15 @@ protected:
 	void loopWhileSuspension();
 	void debugLoop();
 	void alternateTask();
+	void work(Contract::InputType* resolveKey,uint32_t* rawPacket,
+			const char start,const char end,const char space);
 private:
 	JyMcuBt106::Config getBluetoothConfig(OnReceiveListener listener=0)
 	{
 		JyMcuBt106::Config config;
 		config.id =1;
 		config.baud_rate = LIBBASE_MODULE(Uart)::Config::BaudRate::k115200;
+		config.rx_irq_threshold =12;
 		if(listener!=0)
 		{
 			config.rx_isr=listener;

@@ -90,5 +90,10 @@ void TRecordModule::startRecordingCoordinates()
 		addRecord(
 			new Record<CoordinatesSubModule::Coordinates>
 				(coordinatesSubModule.fetcher,resources));
+		coordinatesSubModule.reset();
 	}
+}
+TRecordModule::CoordinatesSubModule* TRecordModule::getCoordinatesSubModule()
+{
+	return &coordinatesSubModule;
 }

@@ -34,8 +34,60 @@ typedef uint16_t TimerInt;
 //TODO complete the listener
 bool listener(const std::vector<Byte> bytes )
 {
-	switch(bytes[0])
-	{
+
+		switch(bytes[0])
+		{
+			case '$':
+			{
+//				int len=bytes.size();
+//	//			if(bytes[bytes.size()-1]!='t')return false;
+//	//			if(bytes.size()!=11)return false;
+//				int cmd=Protocol::vectorToInt(bytes,1,' ');
+//				float val=bytes[6]<<24|bytes[7]<<16|bytes[8]<<8|bytes[9];
+				Protocol::Packet packet=Protocol::getPacketFromVectors(bytes);
+				switch(packet.cmd)
+				{
+					case ERROR:
+						return false;
+					case LCD_TOGGLE_PAGE:
+						lcdRef->toggleAlternate();
+						break;
+					case LCD_SUSPEND:
+						break;
+					case MOTOR_PID_KP:
+						break;
+					case MOTOR_PID_KI:
+						break;
+					case MOTOR_PID_KD:
+						break;
+					case SERVO_PID_KP:
+						break;
+					case SERVO_PID_KI:
+						break;
+					case SERVO_PID_KD:
+						break;
+					case SERVO_ANGLE:
+						break;
+					case KALMAN_FILTER_Q:
+						break;
+					case KALMAN_FILTER_R:
+						break;
+					case MOTOR_PID_TOGGLE:
+						break;
+					case SERVO_PID_TOGGLE:
+						break;
+					case TRACE:
+						break;
+					default:
+						return false;
+				}
+				break;
+			}
+			break;
+			default:
+			break;
+		}
+		break;
 		case 'q':
 			r->config.c_servoPIDControlVariable[0]+=0.5;
 		break;
@@ -68,7 +120,6 @@ bool listener(const std::vector<Byte> bytes )
 			break;
 		default:
 		break;
-	}
 	return true;
 }
 int main(){
@@ -116,6 +167,7 @@ int main(){
 	 recordModule->addRecord(new TRecordModule::Record<float>(mg1Fetcher,r));
 	 recordModule->referenceModule[0]=servoModule;
 	 Module* ptr=ledModule;
+	 recordModule->startRecordingCoordinates();
 
 	/*
 	 * Misc. initialization
@@ -136,16 +188,6 @@ int main(){
 	while(true){
 		ptr->run();
 		ptr=ptr->getNext();
-//		for(int i=0;i<4;i++)
-//		{
-//			reading[i]=r->state.magneticSensorReading[i];
-//		}
-//		float dif = reading[2]-reading[0];
-//		char buffer[100];
-//		int len=sprintf((char*)buffer,"%f %f %f %f %d %f\n",reading[0],reading[1],reading[2],reading[3],
-//					dif,
-//					r->config.c_servoAngle);
-//		bt.SendBuffer((Byte*)buffer,len);
 		if(ptr==0)break;
 		System::DelayMs(20);
 	}

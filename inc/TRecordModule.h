@@ -12,6 +12,7 @@
 #include <Module.h>
 #include <functional>
 #include <cmath>
+#include <TBluetooth.h>
 #if VERSION >=2L
 class TRecordModule :public Module{
 public:
@@ -36,6 +37,7 @@ public:
 		{
 			this->r=r;
 			fetcher=f;
+			btEmployee=0;
 		}
 
 		size_t recordCount()
@@ -70,8 +72,24 @@ public:
 			}
 			return result;
 		}
+		void employ(TBluetooth* employee)
+		{
+			btEmployee=employee;
+		}
+		void fire()
+		{
+			btEmployee=0;
+		}
+		void broadcastLastData()
+		{
+			if(btEmployee)
+			{
+
+			}
+		}
 		private:
 			Resources*		r;
+			TBluetooth*		btEmployee;
 			RecordDeque 	record;
 			Fetcher 		fetcher;
 	};
@@ -144,7 +162,7 @@ public:
 	BaseRecord* getRecord(int index);
 	bool		recordingCoordinates;
 	Module* 	referenceModule[3]; //such feature allow this module to manipulate other modules directly.
-
+	CoordinatesSubModule* getCoordinatesSubModule();
 protected:
 	void 	task();
 	void 	debugLoop();
