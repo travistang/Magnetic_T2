@@ -11,17 +11,20 @@ TBluetoothModule::TBluetoothModule(Resources* resources)
 :Module(resources,BLUETOOTH),TOutsourcer(10),bluetoothCount(resources->config.c_bluetoothCount),
  bluetooth(getBluetoothConfig())
 {
+	Module::serviceProvider=this;
 	timer=new TimerInt[bluetoothCount];
 }
 TBluetoothModule::~TBluetoothModule()
 {
+	if(serviceProvider==this)
+		serviceProvider=0;
 }
 TBluetoothModule::TBluetoothModule
 (Resources* resources,OnReceiveListener listener):Module(resources,BLUETOOTH)
 ,TOutsourcer(10),bluetoothCount(resources->config.c_bluetoothCount)
 ,bluetooth(getBluetoothConfig(listener))
 {
-
+	serviceProvider=this;
 	timer=new TimerInt[bluetoothCount];
 }
 void TBluetoothModule::work(Contract::InputType* resolveKey,uint32_t* rawPacket,
@@ -32,7 +35,7 @@ void TBluetoothModule::work(Contract::InputType* resolveKey,uint32_t* rawPacket,
 	Byte buffer[100];
 	for(unsigned int i=0;i<sizeof(resolveKey)/sizeof(*resolveKey);i++)
 	{
-		len=sprintf((char*)buffer,"%c%c",start,space);
+		len=sprintf((char*)buffer,"%c",start);
 		bluetooth.SendBuffer(buffer,len);
 		switch(resolveKey[i])
 		{
@@ -50,6 +53,10 @@ void TBluetoothModule::work(Contract::InputType* resolveKey,uint32_t* rawPacket,
 				break;
 			case Type::CHAR:
 				len=sprintf((char*)buffer, "%c%c",(char)rawPacket[i],space);
+				bluetooth.SendBuffer(buffer,len);
+				break;
+			case Type::CHAR_PTR:
+				len=sprintf((char*)buffer, "%s%c",(char*)rawPacket[i],space);
 				bluetooth.SendBuffer(buffer,len);
 				break;
 		}

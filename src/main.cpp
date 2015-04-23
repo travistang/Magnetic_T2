@@ -53,26 +53,37 @@ bool listener(const std::vector<Byte> bytes )
 						lcdRef->toggleAlternate();
 						break;
 					case LCD_SUSPEND:
+						lcdRef->suspend();
 						break;
 					case MOTOR_PID_KP:
+						r->config.c_motorPIDControlVariable[0]=packet.value;
 						break;
 					case MOTOR_PID_KI:
+						r->config.c_motorPIDControlVariable[1]=packet.value;
 						break;
 					case MOTOR_PID_KD:
+						r->config.c_motorPIDControlVariable[2]=packet.value;
 						break;
 					case SERVO_PID_KP:
+						r->config.c_servoPIDControlVariable[0]=packet.value;
 						break;
 					case SERVO_PID_KI:
+						r->config.c_servoPIDControlVariable[1]=packet.value;
 						break;
 					case SERVO_PID_KD:
+						r->config.c_servoPIDControlVariable[2]=packet.value;
 						break;
 					case SERVO_ANGLE:
+						r->config.c_servoAngle=packet.value;
 						break;
 					case KALMAN_FILTER_Q:
+						r->config.c_kalmanFilterControlVariable[0]=packet.value;
 						break;
 					case KALMAN_FILTER_R:
+						r->config.c_kalmanFilterControlVariable[1]=packet.value;
 						break;
 					case MOTOR_PID_TOGGLE:
+						r->config.c_motorPIDEnabled=!r->config.c_motorPIDEnabled;
 						break;
 					case SERVO_PID_TOGGLE:
 						break;
@@ -84,42 +95,39 @@ bool listener(const std::vector<Byte> bytes )
 				break;
 			}
 			break;
+			case 'q':
+				r->config.c_servoPIDControlVariable[0]+=0.5;
+			break;
+			case 'w':
+				r->config.c_servoPIDControlVariable[1]+=0.5;
+			break;
+			case 'e':
+				r->config.c_servoPIDControlVariable[2]+=0.5;
+			break;
+			case 'a':
+				r->config.c_servoPIDControlVariable[0]-=0.5;
+			break;
+			case 's':
+				r->config.c_servoPIDControlVariable[1]-=0.5;
+			break;
+			case 'd':
+				r->config.c_servoPIDControlVariable[2]-=0.5;
+			break;
+			case 'r':
+				r->config.c_motorPower+=100;
+				break;
+			case 'f':
+				r->config.c_motorPower-=100;
+				break;
+			case 'n':
+				lcdRef->toggleAlternate();
+				break;
+			case 'm':
+				lcdRef->suspend();
+				break;
 			default:
 			break;
 		}
-		break;
-		case 'q':
-			r->config.c_servoPIDControlVariable[0]+=0.5;
-		break;
-		case 'w':
-			r->config.c_servoPIDControlVariable[1]+=0.5;
-		break;
-		case 'e':
-			r->config.c_servoPIDControlVariable[2]+=0.5;
-		break;
-		case 'a':
-			r->config.c_servoPIDControlVariable[0]-=0.5;
-		break;
-		case 's':
-			r->config.c_servoPIDControlVariable[1]-=0.5;
-		break;
-		case 'd':
-			r->config.c_servoPIDControlVariable[2]-=0.5;
-		break;
-		case 'r':
-			r->config.c_motorPower+=100;
-			break;
-		case 'f':
-			r->config.c_motorPower-=100;
-			break;
-		case 'n':
-			lcdRef->toggleAlternate();
-			break;
-		case 'm':
-			lcdRef->suspend();
-			break;
-		default:
-		break;
 	return true;
 }
 int main(){
@@ -134,8 +142,8 @@ int main(){
 	TimerInt time=libsc::System::Time();
 
 	TLedModule* 				   ledModule=new TLedModule(r);
-	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
 	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
+	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
 	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
 	TServoModule* 	  			 servoModule=new TServoModule(r);
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
@@ -156,9 +164,10 @@ int main(){
 	 * Module configuration
 	 */
 	lcdRef=lcdModule;
+	lcdModule->toggleAlternate();
 	recRef=recordModule;
 	~*stateHandlingModule;
-	~*sensorModule;
+//	~*sensorModule;
 	 *lcdModule>500;
 	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};

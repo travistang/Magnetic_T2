@@ -17,6 +17,7 @@ TLedModule::TLedModule(Resources* resources)
 		led[i].SetEnable(false);
 		timer[i]=libsc::System::Time();
 	}
+	packet=new uint32_t[1];
 }
 TLedModule::~TLedModule()
 {

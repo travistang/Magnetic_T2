@@ -26,13 +26,32 @@ TMagneticSensorModule(Resources* resources)
 				MagneticSensor::getMagneticSensorConfig();
 		timer[i]=libsc::System::Time();
 	}
+	/*
+	 * Resolve key generation; Contract configuration
+	 */
+	resolveKey=new Contract::InputType[4];
+	for(int i=0;i<4;i++)
+	{
+		resolveKey[i]=Contract::InputType::FLOAT;
+	}
+	contract.provideResolveKey(resolveKey,4);
+	packet=new uint32_t[4];
+	for(int i=0;i<4;i++)
+	{
+		packet[i]=(uint32_t)resources->state.magneticSensorReading[i]*1000;
+	}
+	if(contract.provideRawPacket(packet,4))
+	if(serviceProvider)
+	serviceProvider->apply(&contract);
 }
 TMagneticSensorModule::~TMagneticSensorModule()
 {
-	if(sensorCount>resources->config.MAX_MAGNETIC_SENSOR_COUNT)
+	if(sensorCount<resources->config.MAX_MAGNETIC_SENSOR_COUNT)
 	{
 		delete[] timer;
 		delete[] sensor;
+		delete[] packet;
+		delete[] resolveKey;
 	}
 
 }
@@ -46,8 +65,10 @@ void TMagneticSensorModule::task()
 	{
 		sensor[i].update();
 		resources->state.magneticSensorReading[i]
-			=sensor[i].movingAverage();
+			=sensor[i].rawReading();
+		packet[i]=(uint32_t)resources->state.magneticSensorReading[i]*1000;
 	}
+
 #endif
 }
 void TMagneticSensorModule::loopWhileSuspension()
@@ -62,6 +83,7 @@ void TMagneticSensorModule::debugLoop()
 {
 
 }
+
 #endif
 
 

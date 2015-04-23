@@ -27,23 +27,26 @@ public:
 		INT,
 		FLOAT,
 		UINT16_T,
-		CHAR
+		CHAR,
+		CHAR_PTR
 	};
-	Contract(char* attorney,InputType resolveKey[]
-			,unsigned int keyCount,int repetition=UNLIMITED);
+	Contract(char* attorney,int repetition=UNLIMITED);
 	~Contract();
 	const char* 	   attorney;
 	const long 		   ID;
-	bool			   provideRawPacket(uint32_t* raw);
+	bool			   provideRawPacket(uint32_t* raw,unsigned int size);
+	void			   provideResolveKey(InputType* key,unsigned int size);
 	const char		   startChar;
 	const char		   separator;
 	const char		   endChar;
 	Status			   getStatus();
 private:
 	uint32_t*		   rawPacket;
+	unsigned int	   packetSize;
 	static long		   createID();
 	static long		   newestID;
 	InputType*	   	   packetResolveKey;
+	unsigned int	   keySize;
 	bool			   isPrepared;
 	int 			   loopsRemaining;
 	Status			   status;

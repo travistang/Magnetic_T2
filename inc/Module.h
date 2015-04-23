@@ -8,6 +8,7 @@
 #ifndef INC_MODULE_H_
 #define INC_MODULE_H_
 #include "Resources.h"
+#include "TOutsourcer.h"
 #include "Contract.h"
 class Module {
 public:
@@ -53,6 +54,9 @@ public:
 	Module* getNext(Type type);
 protected:
 	Contract	  contract;
+	static TOutsourcer*		serviceProvider;
+	uint32_t*	  packet;
+	Contract::InputType*	resolveKey;
 	const Type	  type;
 	bool		 passFlag;
 	bool		 isTimerSet;

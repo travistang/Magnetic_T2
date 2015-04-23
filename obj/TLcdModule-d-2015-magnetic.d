@@ -23,8 +23,8 @@ obj/TLcdModule-d-2015-magnetic.o: src/TLcdModule.cpp inc/TLcdModule.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/TLcd.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TOutsourcer.h \
+ inc/contract.h inc/Protocol.h inc/Contract.h inc/TLcd.h \
  /Users/Travis/git/libsccc/inc/libsc/battery_meter.h \
  /Users/Travis/git/libsccc/inc/libsc/lcd.h \
  /Users/Travis/git/libsccc/inc/libsc/lcd_console.h \

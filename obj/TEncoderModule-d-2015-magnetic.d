@@ -24,8 +24,8 @@ obj/TEncoderModule-d-2015-magnetic.o: src/TEncoderModule.cpp \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/TEncoder.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TOutsourcer.h \
+ inc/contract.h inc/Protocol.h inc/Contract.h inc/TEncoder.h \
  /Users/Travis/git/libsccc/inc/libsc/dir_encoder.h \
  /Users/Travis/git/libsccc/inc/libsc/config.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \

@@ -13,22 +13,18 @@ long Contract::createID()
 	newestID++;
 	return now;
 }
-Contract::Contract(char* attorney,InputType resolveKey[],unsigned int keyCount,int repetition)
+Contract::Contract(char* attorney,int repetition)
 :attorney(attorney),ID(createID()),isPrepared(false),rawPacket(0)
-,startChar(Protocol::SIGNAL),separator(Protocol::SIGNAL)
+,startChar(Protocol::SIGNAL),separator(Protocol::SPACE_ASCII)
 ,endChar(Protocol::DELIM),status(UNREGISTERED)
 {
-	if(sizeof(resolveKey)==0)return;
-	packetResolveKey=new InputType[sizeof(resolveKey)/sizeof(InputType)];
-	for(int i=0;i<sizeof(resolveKey)/sizeof(InputType);i++)
-	{
-		packetResolveKey[i]=resolveKey[i];
-	}
+
 }
 Contract::~Contract()
 {
 	if(packetResolveKey!=0)
 	delete[] packetResolveKey;
+	//raw packet should not be deleted as it contains pointers to data that may still be used in elsewhere
 }
 
 Contract::Status Contract::getStatus()
@@ -36,15 +32,20 @@ Contract::Status Contract::getStatus()
 	return status;
 }
 
-bool Contract::provideRawPacket(uint32_t* raw)
+bool Contract::provideRawPacket(uint32_t* raw,unsigned int size)
 {
 	rawPacket=raw;
+	packetSize=size;
+	if(packetResolveKey)isPrepared=true;
 	return validate();
 }
 
 bool Contract::validate()
 {
-	return
-		sizeof(rawPacket)/sizeof(*rawPacket)==
-		sizeof(packetResolveKey)/sizeof(*packetResolveKey);
+	return packetSize==keySize;
+}
+void Contract::provideResolveKey(InputType* key,unsigned int size)
+{
+	packetResolveKey=key;
+	keySize=size;
 }

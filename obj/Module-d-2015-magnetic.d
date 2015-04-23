@@ -23,5 +23,5 @@ obj/Module-d-2015-magnetic.o: src/Module.cpp inc/Module.h inc/Resources.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TOutsourcer.h \
+ inc/contract.h inc/Protocol.h inc/Contract.h

@@ -8,8 +8,9 @@
 #include <Module.h>
 #if VERSION >= 2L
 #define __PRINTNAME(var) #var
+TOutsourcer*	Module::serviceProvider=0;
 Module::Module(Resources* resources,Type type,bool alternate)
-:type(type),contract(__PRINTNAME(type),0,0){
+:type(type),contract(__PRINTNAME(type)){
 	this->resources=resources;
 	next=previous=0;
 	disable=false;
@@ -18,6 +19,8 @@ Module::Module(Resources* resources,Type type,bool alternate)
 	this->alternate=alternate;
 	isTimerSet=false;
 	passFlag=false;
+//	packet=0;
+//	resolveKey=0;
 }
 
 Module::~Module()

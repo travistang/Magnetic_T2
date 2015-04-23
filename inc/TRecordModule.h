@@ -72,21 +72,7 @@ public:
 			}
 			return result;
 		}
-		void employ(TBluetooth* employee)
-		{
-			btEmployee=employee;
-		}
-		void fire()
-		{
-			btEmployee=0;
-		}
-		void broadcastLastData()
-		{
-			if(btEmployee)
-			{
 
-			}
-		}
 		private:
 			Resources*		r;
 			TBluetooth*		btEmployee;

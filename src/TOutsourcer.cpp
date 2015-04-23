@@ -48,6 +48,11 @@ bool	TOutsourcer::apply(Contract* contract)
 {
 	if(contractList.size()>=maxContract)return false;
 	if(!contract->validate())return false;
+	for(int i=0;i<contractList.size();i++)
+	{
+		if(contractList[i]->ID==contract->ID)
+		return false;
+	}
 	contractList.push_back(contract);
 	return true;
 }
