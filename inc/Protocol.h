@@ -9,6 +9,7 @@
 #define INC_PROTOCOL_H_
 #include <vector>
 #include <algorithm>
+#include <string>
 #include <libbase/misc_types.h>
 /*
  * Command mapping
@@ -49,7 +50,7 @@ public:
     	std::vector<Byte>::iterator startItr=std::find(input.begin(),input.end(),(Byte)SIGNAL),
     		   endItr=std::find(input.begin(),input.end(),(Byte)DELIM);
     	if(startItr>=endItr||startItr==input.end()||endItr==input.end())return result;
-    	std::vector<Byte> v(startItr,endItr);
+    	std::vector<Byte> v(startItr,endItr+1);
     	return v;
 	}
 	static int vectorToInt(std::vector<Byte> v,size_t startPos,char delim)
@@ -83,12 +84,13 @@ public:
 		}
 		if(i==v.size())return -1;
 
-		char* buf=new char[i-startPos];
-		for(int j=0;j<i-startPos;j++)
-		{
-			buf[j]=(char)v[startPos+j];
-		}
-		float result=atof(buf);
+//		char* buf=new char[i-startPos-1];
+//		for(int j=0;j<i-startPos-1;j++)
+//		{
+//			buf[j]=(char)v[startPos+j];
+//		}
+		std::string buf(v.begin()+startPos,v.begin()+i);
+		float result=atof(buf.c_str());
 //		delete[] buf;
 		return result;
 	}
