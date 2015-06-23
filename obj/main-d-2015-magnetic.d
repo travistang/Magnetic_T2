@@ -22,9 +22,8 @@ obj/main-d-2015-magnetic.o: src/main.cpp \
  /Users/Travis/git/libsccc/inc/libbase/pinout_macros.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/ftm_pwm.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/pwm.h \
- /Users/Travis/git/libsccc/inc/libsc/motor.h inc/PID.h inc/LinkedList.h \
- inc/CarState.h inc/MagneticSensor.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
+ /Users/Travis/git/libsccc/inc/libsc/motor.h inc/PID.h inc/CarState.h \
+ inc/MagneticSensor.h /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
  /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \

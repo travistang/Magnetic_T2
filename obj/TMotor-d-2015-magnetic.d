@@ -18,4 +18,4 @@ obj/TMotor-d-2015-magnetic.o: src/TMotor.cpp inc/TMotor.h inc/Config.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/pwm.h \
  /Users/Travis/git/libsccc/inc/libsc/motor.h inc/PID.h \
  /Users/Travis/git/libsccc/inc/libsc/timer.h \
- /Users/Travis/git/libsccc/inc/libsc/system.h inc/LinkedList.h
+ /Users/Travis/git/libsccc/inc/libsc/system.h

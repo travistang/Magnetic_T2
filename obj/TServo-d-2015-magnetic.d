@@ -23,4 +23,4 @@ obj/TServo-d-2015-magnetic.o: src/TServo.cpp inc/TServo.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/PID.h \
  /Users/Travis/git/libsccc/inc/libsc/timer.h \
- /Users/Travis/git/libsccc/inc/libsc/system.h inc/LinkedList.h
+ /Users/Travis/git/libsccc/inc/libsc/system.h

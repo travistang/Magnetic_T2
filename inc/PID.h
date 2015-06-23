@@ -12,7 +12,9 @@
 #include <functional>
 //#include <list>
 //TODO use std::list if necessary
-#include <LinkedList.h>
+//#include <LinkedList.h>
+#include <vector>
+#include <math.h>
 class GeneralPID{
 
 };
@@ -32,9 +34,9 @@ public:
 	/*
 	 * The automat sets the value of particular control variables when Operator returns true
 	 */
-	typedef std::function<void(A)> Automat;		//T: var to monitor; Automat: function that deals with the value of the var
+	typedef std::function<void(A,float&,float&,float&)> Automat;		//T: var to monitor; Automat: function that deals with the value of the var
 //	typedef std::list<Automat> AutomatList;
-	typedef LinkedList<Automat> AutomatList;
+	typedef std::vector<Automat> AutomatList;
 	enum Precision
 	{
 					/*
@@ -56,17 +58,28 @@ public:
 	PID(float Kp, float Ki, float Kd,A sp,Precision precision=LOW):
 		m_kp(Kp),m_ki(Ki),m_kd(Kd),m_sp(sp),m_last_error(0),
 		m_integral(0),m_differential(0),
-		useKp(true),useKi(false),useKd(false),
+		useKp(true),useKi(false),useKd(true),
 		m_initTime(libsc::System::Time()),
 		m_lastTime(m_initTime),
 		m_precision(precision),
 		m_refreshInterval(0),
 		useAutomat(false),
 		m_lastUpdate(libsc::System::Time())
-		{};
+		{
+			m_automatList.push_back(&adaptivePController);
+			m_automatList.push_back(&adaptiveDController);
+		};
 	PID():PID(0,0,0,(A)0){};
 	B 				getTunedValue(A input)
 					{
+						if(useAutomat)
+						{
+							for(int i = 0; i< m_automatList.size();i++)
+							{
+								m_automatList[i](input,m_kp,m_ki,m_kd);
+								// The automats are supposed to alter the control variables and thus the tuned value.
+							}
+						}
 						if(!useKp&&!useKi&&!useKd) return input; //this case is equivalent to disabling the controller
 						/*
 						 * fetch dt, error and initialize tuning procedure
@@ -151,14 +164,15 @@ public:
 					{
 						m_precision=precision;
 					}
-	void 			addAutomat(Automat automat)
+	void 			addAutomat(int index)
 					{
 //						m_automatList.push_back(automat);
-						m_automatList.push(automat);
+						if(index>m_automatList.size())return;
+						m_automatList.push_back(m_automatList.begin()+index);
 					};
 	void 			removeAutomat(Automat automat)
 					{
-						m_automatList.remove(automat);
+						m_automatList.erase(automat);
 					};
 	void 			setRefreshInterval(TimerInt interval)
 					{
@@ -225,14 +239,28 @@ private:
 	 * Automat configuration: Tune params under specified conditions
 	 */
 	const libsc::Timer::TimerInt m_initTime;
-	libsc::Timer::TimerInt m_lastTime;
+	libsc::Timer::TimerInt 		m_lastTime;
 	TimerInt 					m_refreshInterval;
 	TimerInt 					m_lastUpdate;
 	AutomatList 				m_automatList;
 	A 							m_integral;
 	A 							m_differential;
 	A 							m_last_error;
+	static void			adaptivePController(A input,float& kp,float& ki,float& kd)
+	{
+		float a = 1, b = 0;
+		kp = a*input*input + 0; // a is the coef. that needs to be explored;
+		//b is the optimized tune value of p controller in straight road.
+	}
 
+	static void			adaptiveDController(A input,float& kp,float& ki,float& kd)
+	{
+		float E = 2.7182818,	//The approximation of the base of natural logarithm
+			  a = 1,			//The peak of the bell curve. It represents the value of d controller in straight road.
+			  c = 0.5;			//The width of the bell curve. Which is supposed to be small and it needs to be adjusted.
+
+		kd = a* pow(E, -input* input/(2*c*c));	//the Gaussian curve, which is believed to suit the adapting D control value
+	}
 };
 
 #endif /* INC_PID_H_ */

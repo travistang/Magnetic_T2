@@ -31,6 +31,6 @@ obj/TLcd-d-2015-magnetic.o: src/TLcd.cpp inc/TLcd.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/pwm.h \
  /Users/Travis/git/libsccc/inc/libsc/motor.h inc/PID.h \
  /Users/Travis/git/libsccc/inc/libsc/timer.h \
- /Users/Travis/git/libsccc/inc/libsc/system.h inc/LinkedList.h \
- inc/CarState.h inc/MagneticSensor.h inc/KF.h \
+ /Users/Travis/git/libsccc/inc/libsc/system.h inc/CarState.h \
+ inc/MagneticSensor.h inc/KF.h \
  /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h

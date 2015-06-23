@@ -19,9 +19,9 @@ obj/TMotorModule-d-2015-magnetic.o: src/TMotorModule.cpp \
  /Users/Travis/git/libsccc/inc/libbase/k60/pwm.h \
  /Users/Travis/git/libsccc/inc/libsc/motor.h inc/PID.h \
  /Users/Travis/git/libsccc/inc/libsc/timer.h \
- /Users/Travis/git/libsccc/inc/libsc/system.h inc/LinkedList.h \
- inc/Module.h inc/Resources.h inc/CarConfig.h inc/CarState.h \
- inc/MagneticSensor.h /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
+ /Users/Travis/git/libsccc/inc/libsc/system.h inc/Module.h \
+ inc/Resources.h inc/CarConfig.h inc/CarState.h inc/MagneticSensor.h \
+ /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
  /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \

@@ -19,4 +19,4 @@ obj/CarConfig-d-2015-magnetic.o: src/CarConfig.cpp inc/CarConfig.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/pwm.h \
  /Users/Travis/git/libsccc/inc/libsc/motor.h inc/PID.h \
  /Users/Travis/git/libsccc/inc/libsc/timer.h \
- /Users/Travis/git/libsccc/inc/libsc/system.h inc/LinkedList.h
+ /Users/Travis/git/libsccc/inc/libsc/system.h
