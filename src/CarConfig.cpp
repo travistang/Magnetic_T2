@@ -9,11 +9,15 @@
 
 CarConfig::CarConfig() :
 
+		step(5),
+
+		sign(1),
+
 		c_halt(0),
 
 		c_ledCount(3),
 
-		c_magneticSensorCount(4),
+		c_magneticSensorCount(6),
 
 		c_magneticSensorFrontWheelDistance(0.4), //in m
 
@@ -49,7 +53,7 @@ CarConfig::CarConfig() :
 
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
-	c_servoPIDControlVariable[0] = -22;
+	c_servoPIDControlVariable[0] = 1.5;
 	c_servoPIDControlVariable[1] = 0;
 	c_servoPIDControlVariable[2] = 0;
 	c_servoPIDSp = 900;
@@ -86,3 +90,12 @@ CarConfig::CarConfig() :
 
 }
 
+float				CarConfig::getStep()
+{
+	return step;
+}
+
+int					CarConfig::getSign()
+{
+	return sign;
+}

@@ -24,8 +24,9 @@ obj/TRecordModule-d-2015-magnetic.o: src/TRecordModule.cpp \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/TBluetooth.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
+ inc/Contract.h inc/Protocol.h inc/TBluetooth.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/jy_mcu_bt_106.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/uart.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/uart_device.h inc/Protocol.h

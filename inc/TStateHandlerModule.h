@@ -20,7 +20,7 @@ protected:
 	void loopWhileSuspension();
 	void debugLoop();
 private:
-	PID<float> pid;
+	PID<float,uint16_t> pid;
 };
 
 #endif /* INC_TSTATEHANDLERMODULE_H_ */

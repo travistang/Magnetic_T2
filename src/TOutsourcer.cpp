@@ -24,11 +24,11 @@ void	TOutsourcer::fulfillContract()
 {
 	for(size_t i=0;i<contractList.size();i++)
 	{
-		if(!contractList[i]->validate())
-		{
-			contractList[i]->status=Contract::Status::INVALID;
-			contractList.erase(contractList.begin()+i);
-		}
+//		if(!contractList[i]->validate())
+//		{
+//			contractList[i]->status=Contract::Status::INVALID;
+//			contractList.erase(contractList.begin()+i);
+//		}
 		if(!contractList[i]->isPrepared)continue;
 		contractList[i]->status=Contract::Status::PROCESSING;
 		work(contractList[i]->packetResolveKey,contractList[i]->rawPacket,

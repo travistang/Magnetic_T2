@@ -29,8 +29,8 @@ void TServoModule::loopWhileSuspension()
 	servo.SetPID(resources->config.c_servoPIDControlVariable[0],
 			resources->config.c_servoPIDControlVariable[1],
 			resources->config.c_servoPIDControlVariable[2]);
-	servo.SetDegree(resources->config.c_servoCentralAngle);
-	debugLoop();
+	servo.SetDegreeWithPID(resources->state.getDif());
+//	debugLoop();
 }
 void TServoModule::debugLoop()
 {

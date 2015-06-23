@@ -97,6 +97,7 @@ public:
 #endif
 	SituationScheduler	scheduler;
 #endif
+	float							getDif();
 };
 
 #endif /* SRC_CARSTATE_H_ */

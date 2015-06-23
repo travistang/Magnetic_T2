@@ -12,11 +12,12 @@
 #include <TMotor.h>
 #include <PID.h>
 #include <Config.h>
+
 using namespace std;
 class CarConfig {
 public:
 	CarConfig();
-
+	friend class Resources;
 	static const int	MAX_LED_COUNT			  = 4;
 #if MCU == K60
 	static const int	MAX_MAGNETIC_SENSOR_COUNT = 6;
@@ -88,6 +89,12 @@ public:
 	const	 int		c_encoderCountPerRevolution;
 	const	 float		c_gearRatio;		//Tire gear/motor gear
 	volatile float		c_sensorSignalInvalidThreshold;
+
+	float				getStep();
+	int					getSign();
+private:
+	float				step;
+	int 				sign;
 };
 
 #endif /* INC_CARCONFIG_H_ */

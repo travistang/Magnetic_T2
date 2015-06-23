@@ -23,5 +23,7 @@ obj/TLedModule-d-2015-magnetic.o: src/TLedModule.cpp inc/TLedModule.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/tLed.h /Users/Travis/git/libsccc/inc/libsc/led.h
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
+ inc/Contract.h inc/Protocol.h inc/tLed.h \
+ /Users/Travis/git/libsccc/inc/libsc/led.h

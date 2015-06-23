@@ -51,6 +51,7 @@ public:
 	virtual void	operator!();
 	Type		 	getType();
 	Module* getNext(Type type);
+	void buzz(uint16_t interval=10);
 protected:
 	Contract	  contract;
 	const Type	  type;

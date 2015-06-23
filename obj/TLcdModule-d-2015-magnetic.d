@@ -23,8 +23,9 @@ obj/TLcdModule-d-2015-magnetic.o: src/TLcdModule.cpp inc/TLcdModule.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/TLcd.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
+ inc/Contract.h inc/Protocol.h inc/TLcd.h \
  /Users/Travis/git/libsccc/inc/libsc/battery_meter.h \
  /Users/Travis/git/libsccc/inc/libsc/lcd.h \
  /Users/Travis/git/libsccc/inc/libsc/lcd_console.h \
@@ -33,12 +34,4 @@ obj/TLcdModule-d-2015-magnetic.o: src/TLcdModule.cpp inc/TLcdModule.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_spi_master.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master_interface.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout/mk60f15_lqfp144.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/dac.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/ftm.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/i2c.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/uart.h \
- /Users/Travis/git/libsccc/inc/libsc/config.h \
- /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
- inc/Config.h
+ /Users/Travis/git/libsccc/inc/libsc/config.h inc/Config.h

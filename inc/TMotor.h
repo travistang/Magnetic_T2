@@ -14,7 +14,7 @@ class TMotor: public libsc::DirMotor {
 public:
 	virtual ~TMotor();
 	TMotor(const Config &config);
-	PID<uint16_t> 	pid;
+	PID<uint16_t,uint16_t> 	pid;
 #if ADVANCED_SPEED_MONITOR
 	void	setSpeed(float speedMS);
 	void	setSpeed(uint16_t encoderCountS);

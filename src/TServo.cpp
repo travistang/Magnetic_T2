@@ -29,15 +29,15 @@ void TServo::SetReverseDegree(uint16_t degree)
 {
 	SetDegree(900-degree);
 }
-void TServo::SetDegreeWithPID(uint16_t degree)
+void TServo::SetDegreeWithPID(float dif)
 {
-	uint16_t safeDegree=libutil::Clamp(lowerBound,pid.getTunedValue(degree),upperBound);
-	Servo::SetDegree(safeDegree);
+//	uint16_t safeDegree=libutil::Clamp(lowerBound,pid.getTunedValue(dif),upperBound);
+	Servo::SetDegree(pid.getTunedValue(dif));
 }
 
 void TServo::SetPID(float p,float i,float d)
 {
-	pid.setControlValue(PID<uint16_t>::Controller::P,p);
-	pid.setControlValue(PID<uint16_t>::Controller::I,i);
-	pid.setControlValue(PID<uint16_t>::Controller::D,d);
+	pid.setControlValue(PID<float,uint16_t>::Controller::P,p);
+	pid.setControlValue(PID<float,uint16_t>::Controller::I,i);
+	pid.setControlValue(PID<float,uint16_t>::Controller::D,d);
 }

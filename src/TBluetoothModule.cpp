@@ -73,11 +73,13 @@ void TBluetoothModule::loopWhileSuspension()
 void TBluetoothModule::alternateTask()
 {
 	Byte buffer[100];
-	int len=sprintf((char*)buffer,"%g %g %g %g\n",
+	int len=sprintf((char*)buffer,"%g %g %g %g %g %g\n",
 			resources->state.magneticSensorReading[0],
 			resources->state.magneticSensorReading[1],
 			resources->state.magneticSensorReading[2],
-			resources->state.magneticSensorReading[3]);
+			resources->state.magneticSensorReading[3],
+			resources->state.magneticSensorReading[4],
+			resources->state.magneticSensorReading[5]);
 	bluetooth.SendBuffer(buffer,len);
 }
 void TBluetoothModule::debugLoop()

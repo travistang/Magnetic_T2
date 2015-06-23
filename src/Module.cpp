@@ -213,4 +213,9 @@ void Module::alternateTask()
 {
 
 }
+
+void Module::buzz(uint16_t interval)
+{
+	resources->buzzer.buzz(interval);
+}
 #endif

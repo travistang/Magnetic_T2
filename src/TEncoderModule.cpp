@@ -7,8 +7,15 @@
 
 #include <TEncoderModule.h>
 #if VERSION>=2L
+
+libsc::DirEncoder::Config getEncoderConfig()
+{
+	libsc::DirEncoder::Config config;
+	config.id=0;
+	return config;
+}
 TEncoderModule::TEncoderModule(Resources* resources)
-:Module(resources,ENCODER),encoder({0},
+:Module(resources,ENCODER),encoder(getEncoderConfig(),
 		resources->config.c_loopInterval,
 		resources->config.c_wheelDiameter,
 		resources->config.c_encoderCountPerRevolution)
@@ -33,4 +40,5 @@ void TEncoderModule::loopWhileSuspension()
 	encoder.Update();
 	resources->state.encoderCount=encoder.GetCount();
 }
+
 #endif

@@ -93,31 +93,6 @@ void TStateHandlerModule::task()
 void TStateHandlerModule::loopWhileSuspension()
 {
 
-
-	int sensorCount=resources->config.c_magneticSensorCount;
-
-	float* reading=new float[sensorCount];
-		for(int i=0;i<sensorCount;i++)
-		{
-			reading[i]=resources->state.magneticSensorReading[i];
-		}
-	float 	dif= reading[sensorCount-1]-reading[0];
-	if(reading[2]<resources->config.c_sensorSignalInvalidThreshold
-			||reading[3]<resources->config.c_sensorSignalInvalidThreshold)
-	{
-		delete[] reading;
-		return;
-	}
-//			max=resources->config.c_servoAngleUpperBound,
-//			min=resources->config.c_servoAngleLowerBound;
-		float	max=resources->config.c_servoAngleUpperBound,
-				min=resources->config.c_servoAngleLowerBound;
-		pid.setParam(resources->config.c_servoPIDControlVariable[0],
-					resources->config.c_servoPIDControlVariable[1],
-					resources->config.c_servoPIDControlVariable[2]);
-//			resources->config.c_servoAngle=(dif+20)/40*(max-min)+min;
-			resources->config.c_servoAngle=900-pid.getTunedValue(dif);
-		delete[] reading;
 }
 void TStateHandlerModule::debugLoop()
 {

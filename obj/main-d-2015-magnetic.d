@@ -26,10 +26,10 @@ obj/main-d-2015-magnetic.o: src/main.cpp \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TEncoder.h \
- /Users/Travis/git/libsccc/inc/libsc/dir_encoder.h \
- /Users/Travis/git/libsccc/inc/libsc/config.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
+ inc/TEncoder.h /Users/Travis/git/libsccc/inc/libsc/dir_encoder.h \
+ /Users/Travis/git/libsccc/inc/libsc/config.h \
  /Users/Travis/git/libsccc/inc/libsc/encoder.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_quad_decoder.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/quad_decoder_interface.h \
@@ -54,10 +54,5 @@ obj/main-d-2015-magnetic.o: src/main.cpp \
  /Users/Travis/git/libsccc/inc/libsc/st7735r.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_spi_master.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master_interface.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/spi_master.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout/mk60f15_lqfp144.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/dac.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/ftm.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/i2c.h inc/Config.h \
+ /Users/Travis/git/libsccc/inc/libbase/k60/spi_master.h inc/Config.h \
  inc/TRecordModule.h inc/TBluetooth.h

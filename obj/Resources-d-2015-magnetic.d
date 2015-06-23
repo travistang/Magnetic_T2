@@ -23,4 +23,5 @@ obj/Resources-d-2015-magnetic.o: src/Resources.cpp inc/Resources.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h

@@ -86,8 +86,7 @@ bool listener(const std::vector<Byte> bytes )
 			break;
 			default:
 			break;
-		}
-		break;
+
 		case 'q':
 			r->config.c_servoPIDControlVariable[0]+=0.5;
 		break;
@@ -118,8 +117,7 @@ bool listener(const std::vector<Byte> bytes )
 		case 'm':
 			lcdRef->suspend();
 			break;
-		default:
-		break;
+		}
 	return true;
 }
 int main(){
@@ -129,26 +127,27 @@ int main(){
 	System::Init();
 
 	Resources resources;
-	r=&resources;
-
+	r = resources.getResRef();
 	TimerInt time=libsc::System::Time();
 
 	TLedModule* 				   ledModule=new TLedModule(r);
 	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
-	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
+//	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
 	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
 	TServoModule* 	  			 servoModule=new TServoModule(r);
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
 	TMotorModule* 	  			 motorModule=new TMotorModule(r);
 	TLcdModule* 				   lcdModule=new TLcdModule(r);
-	TRecordModule*				recordModule=new TRecordModule(r);
+//	TRecordModule*				recordModule=new TRecordModule(r);
 
 	*ledModule||sensorModule
-			  ||stateHandlingModule
+//			  ||stateHandlingModule
 			  ||servoModule
+			  ||motorModule
+//			  ||encoderModule
 			  ||lcdModule
-			  ||bluetoothModule
-			  ||recordModule
+//			  ||bluetoothModule
+//			  ||recordModule
 			  ||ledModule;
 
 
@@ -156,29 +155,26 @@ int main(){
 	 * Module configuration
 	 */
 	lcdRef=lcdModule;
-	recRef=recordModule;
+//	recRef=recordModule;
 	~*stateHandlingModule;
 	~*sensorModule;
+	~*servoModule;
 	 *lcdModule>500;
+//	 bluetoothModule->toggleAlternate();
 	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
-	 recordModule->addRecord(
-			 new TRecordModule::Record<uint16_t>(servoFetcher,r));
-	 recordModule->addRecord(new TRecordModule::Record<float>(mg1Fetcher,r));
-	 recordModule->referenceModule[0]=servoModule;
+//	 recordModule->addRecord(
+//			 new TRecordModule::Record<uint16_t>(servoFetcher,r));
+//	 recordModule->addRecord(new TRecordModule::Record<float>(mg1Fetcher,r));
+//	 recordModule->referenceModule[0]=servoModule;
 	 Module* ptr=ledModule;
-	 recordModule->startRecordingCoordinates();
-
+//	 recordModule->startRecordingCoordinates();
+//	 Resources::m_instance = &resources;
 	/*
 	 * Misc. initialization
 	 */
 	float reading[4];
 	char  buf[100];
-	TBluetooth::Config config;
-	config.id=1;
-	config.baud_rate=LIBBASE_MODULE(Uart)::Config::BaudRate::k115200;
-	config.rx_isr=&listener;
-//	TBluetooth bt(config);
 
 
 	TEncoder::Config enConfig;
@@ -186,10 +182,11 @@ int main(){
 //	TEncoder encoder(enConfig);
 
 	while(true){
+//		ptr->buzz();
 		ptr->run();
 		ptr=ptr->getNext();
 		if(ptr==0)break;
-		System::DelayMs(20);
+		System::DelayMs(10);
 	}
 	return 0;
 }

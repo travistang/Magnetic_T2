@@ -16,7 +16,7 @@
 class GeneralPID{
 
 };
-template<typename T>
+template<typename A,typename B> // A in, B out
 class PID :GeneralPID{
 public:
 	enum Controller{
@@ -32,7 +32,7 @@ public:
 	/*
 	 * The automat sets the value of particular control variables when Operator returns true
 	 */
-	typedef std::function<void(T)> Automat;		//T: var to monitor; Automat: function that deals with the value of the var
+	typedef std::function<void(A)> Automat;		//T: var to monitor; Automat: function that deals with the value of the var
 //	typedef std::list<Automat> AutomatList;
 	typedef LinkedList<Automat> AutomatList;
 	enum Precision
@@ -53,7 +53,7 @@ public:
 					HIGH
 	};
 
-	PID(float Kp, float Ki, float Kd,T sp,Precision precision=LOW):
+	PID(float Kp, float Ki, float Kd,A sp,Precision precision=LOW):
 		m_kp(Kp),m_ki(Ki),m_kd(Kd),m_sp(sp),m_last_error(0),
 		m_integral(0),m_differential(0),
 		useKp(true),useKi(false),useKd(false),
@@ -64,18 +64,18 @@ public:
 		useAutomat(false),
 		m_lastUpdate(libsc::System::Time())
 		{};
-	PID():PID(0,0,0,(T)0){};
-	T 				getTunedValue(T input)
+	PID():PID(0,0,0,(A)0){};
+	B 				getTunedValue(A input)
 					{
 						if(!useKp&&!useKi&&!useKd) return input; //this case is equivalent to disabling the controller
 						/*
 						 * fetch dt, error and initialize tuning procedure
 						 */
 						libsc::Timer::TimerInt dt=getDt();
-						T error=input-m_sp; //when observed value is lower than the set point,
+						A error=input-m_sp; //when observed value is lower than the set point,
 											//the error will be positive. so that the proportional
 											//controller will compensate the error by adding the differences
-						T result=input;
+						B result=900;
 						/*
 						 * main procedure: calculate tuned result
 						 */
@@ -97,7 +97,7 @@ public:
 						m_lastTime=libsc::System::Time();
 						return result;
 					};
-	T 				getLastError()
+	A 				getLastError()
 					{
 						return m_last_error;
 					};
@@ -115,7 +115,7 @@ public:
 								break;
 						}
 					};
-	void 			setSp(T sp)
+	void 			setSp(A sp)
 					{
 						m_sp=sp;
 					};
@@ -204,7 +204,7 @@ private:
 	{
 		return libsc::System::Time()-m_lastTime;
 	};
-	void 			updateIntegral(T error, libsc::Timer::TimerInt dt)
+	void 			updateIntegral(A error, libsc::Timer::TimerInt dt)
 	{
 						switch(m_precision){
 							case LOW:									//Riemann sum
@@ -217,7 +217,7 @@ private:
 						}
 
 					};
-	void 			updateDifferential(T error, libsc::Timer::TimerInt dt)
+	void 			updateDifferential(A error, libsc::Timer::TimerInt dt)
 					{
 						m_differential=(error-m_last_error)/dt;
 					};
@@ -229,9 +229,9 @@ private:
 	TimerInt 					m_refreshInterval;
 	TimerInt 					m_lastUpdate;
 	AutomatList 				m_automatList;
-	T 							m_integral;
-	T 							m_differential;
-	T 							m_last_error;
+	A 							m_integral;
+	A 							m_differential;
+	A 							m_last_error;
 
 };
 

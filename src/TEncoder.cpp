@@ -23,7 +23,7 @@ float TEncoder::getCarSpeedByEncoderCount()
 	Update();
 	float distance=PI * wheelDiameter
 					  * (float)GetCount() / (float)countPerRevolution;
-	return distance/(float)updateInterval*1000.0f;
+	return distance*1000.0f/(float)updateInterval;
 //	return GetCount();
 }
 

@@ -21,12 +21,6 @@ obj/TLcd-d-2015-magnetic.o: src/TLcd.cpp inc/TLcd.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/gpio.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master_interface.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout/mk60f15_lqfp144.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/dac.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/ftm.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/i2c.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/uart.h \
  /Users/Travis/git/libsccc/inc/libsc/config.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/Config.h \
@@ -39,4 +33,4 @@ obj/TLcd-d-2015-magnetic.o: src/TLcd.cpp inc/TLcd.h \
  /Users/Travis/git/libsccc/inc/libsc/timer.h \
  /Users/Travis/git/libsccc/inc/libsc/system.h inc/LinkedList.h \
  inc/CarState.h inc/MagneticSensor.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h

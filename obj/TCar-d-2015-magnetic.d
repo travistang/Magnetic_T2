@@ -24,10 +24,11 @@ obj/TCar-d-2015-magnetic.o: src/TCar.cpp inc/TCar.h inc/Config.h \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/tLed.h /Users/Travis/git/libsccc/inc/libsc/led.h \
- inc/TBluetoothModule.h inc/TBluetooth.h \
- /Users/Travis/git/libsccc/inc/libsc/k60/jy_mcu_bt_106.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
+ inc/Contract.h inc/Protocol.h inc/tLed.h \
+ /Users/Travis/git/libsccc/inc/libsc/led.h inc/TBluetoothModule.h \
+ inc/TBluetooth.h /Users/Travis/git/libsccc/inc/libsc/k60/jy_mcu_bt_106.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/uart.h \
  /Users/Travis/git/libsccc/inc/libsc/k60/uart_device.h inc/Protocol.h \
  inc/TOutsourcer.h inc/contract.h inc/TLcdModule.h inc/TLcd.h \
@@ -39,14 +40,8 @@ obj/TCar-d-2015-magnetic.o: src/TCar.cpp inc/TCar.h inc/Config.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_spi_master.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master_interface.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/spi_master.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/pinout/mk60f15_lqfp144.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/dac.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/ftm.h \
- /Users/Travis/git/libsccc/inc/libbase/k60/i2c.h \
- /Users/Travis/git/libsccc/inc/libsc/config.h \
- /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
- inc/TMotorModule.h inc/Module.h inc/TServoModule.h inc/TServo.h \
+ /Users/Travis/git/libsccc/inc/libsc/config.h inc/TMotorModule.h \
+ inc/Module.h inc/TServoModule.h inc/TServo.h \
  /Users/Travis/git/libsccc/inc/libsc/trs_d05.h \
  /Users/Travis/git/libsccc/inc/libsc/servo.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_pwm.h \

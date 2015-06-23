@@ -10,6 +10,9 @@
 #include <CarConfig.h>
 #include <CarState.h>
 #include <Config.h>
+#include <TBuzzer.h>
+//#include <TLcdModule.h>
+#include "libbase/k60/gpio.h"
 #if	VERSION>=2L
 class Resources {
 public:
@@ -22,6 +25,17 @@ public:
 	 */
 	CarConfig	config;
 	CarState	state;
+	TBuzzer 	buzzer;
+	Resources* getResRef();
+//	static TLcdModule* lcdRef;
+//	static Resources* m_instance;
+private:
+
+	typedef Gpi Switch;
+	Switch		switches[7];
+	Switch::Config getSwitchConfig(uint8_t id);
+	static void switchListener(Gpi* gpi);
+	function<void(Gpi* gpi)> getListener();
 };
 #endif
 #endif /* INC_RESOURCES_H_ */

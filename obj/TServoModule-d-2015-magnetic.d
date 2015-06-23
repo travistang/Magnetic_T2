@@ -24,11 +24,11 @@ obj/TServoModule-d-2015-magnetic.o: src/TServoModule.cpp \
  inc/CarState.h inc/MagneticSensor.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/adc.h \
  /Users/Travis/git/libsccc/inc/libutil/misc.h inc/KF.h \
- /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/Contract.h \
- inc/Protocol.h inc/TServo.h \
+ /Users/Travis/git/libsccc/inc/libutil/kalman_filter.h inc/TBuzzer.h \
+ /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h \
+ inc/Contract.h inc/Protocol.h inc/TServo.h \
  /Users/Travis/git/libsccc/inc/libsc/trs_d05.h \
  /Users/Travis/git/libsccc/inc/libsc/servo.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/soft_pwm.h \
  /Users/Travis/git/libsccc/inc/libbase/k60/pit.h \
- /Users/Travis/git/libsccc/inc/libsc/config.h \
- /Users/Travis/git/libsccc/inc/libsc/k60/config/2015_magnetic.h
+ /Users/Travis/git/libsccc/inc/libsc/config.h

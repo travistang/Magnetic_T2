@@ -163,4 +163,7 @@ void CarState::processSensorState(
 #endif
 #endif
 
-
+float CarState::getDif()
+{
+	return magneticSensorReading[4]-magneticSensorReading[5];
+}
