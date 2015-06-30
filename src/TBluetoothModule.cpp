@@ -8,7 +8,7 @@
 #include "TBluetoothModule.h"
 
 TBluetoothModule::TBluetoothModule(Resources* resources)
-:Module(resources,BLUETOOTH),TOutsourcer(10),bluetoothCount(resources->config.c_bluetoothCount),
+:Module(resources,BLUETOOTH),bluetoothCount(resources->config.c_bluetoothCount),
  bluetooth(getBluetoothConfig())
 {
 	timer=new TimerInt[bluetoothCount];
@@ -18,52 +18,52 @@ TBluetoothModule::~TBluetoothModule()
 }
 TBluetoothModule::TBluetoothModule
 (Resources* resources,OnReceiveListener listener):Module(resources,BLUETOOTH)
-,TOutsourcer(10),bluetoothCount(resources->config.c_bluetoothCount)
+,bluetoothCount(resources->config.c_bluetoothCount)
 ,bluetooth(getBluetoothConfig(listener))
 {
 
 	timer=new TimerInt[bluetoothCount];
 }
-void TBluetoothModule::work(Contract::InputType* resolveKey,uint32_t* rawPacket,
-		const char start,const char end, const char space)
-{
-	typedef Contract::InputType Type;
-	int len=0;
-	Byte buffer[100];
-	for(unsigned int i=0;i<sizeof(resolveKey)/sizeof(*resolveKey);i++)
-	{
-		len=sprintf((char*)buffer,"%c%c",start,space);
-		bluetooth.SendBuffer(buffer,len);
-		switch(resolveKey[i])
-		{
-			case Type::INT:
-				len=sprintf((char*)buffer, "%d%c",(int)rawPacket[i],space);
-				bluetooth.SendBuffer(buffer,len);
-				break;
-			case Type::FLOAT:
-				len=sprintf((char*)buffer, "%f%c",(float)rawPacket[i]/1000,space);
-				bluetooth.SendBuffer(buffer,len);
-				break;
-			case Type::UINT16_T:
-				len=sprintf((char*)buffer, "%d%c",(uint16_t)rawPacket[i],space);
-				bluetooth.SendBuffer(buffer,len);
-				break;
-			case Type::CHAR:
-				len=sprintf((char*)buffer, "%c%c",(char)rawPacket[i],space);
-				bluetooth.SendBuffer(buffer,len);
-				break;
-		}
-	}
-	len=sprintf((char*)buffer,"%c\n",end);
-	bluetooth.SendBuffer(buffer,len);
-}
+//void TBluetoothModule::work(Contract::InputType* resolveKey,uint32_t* rawPacket,
+//		const char start,const char end, const char space)
+//{
+//	typedef Contract::InputType Type;
+//	int len=0;
+//	Byte buffer[100];
+//	for(unsigned int i=0;i<sizeof(resolveKey)/sizeof(*resolveKey);i++)
+//	{
+//		len=sprintf((char*)buffer,"%c%c",start,space);
+//		bluetooth.SendBuffer(buffer,len);
+//		switch(resolveKey[i])
+//		{
+//			case Type::INT:
+//				len=sprintf((char*)buffer, "%d%c",(int)rawPacket[i],space);
+//				bluetooth.SendBuffer(buffer,len);
+//				break;
+//			case Type::FLOAT:
+//				len=sprintf((char*)buffer, "%f%c",(float)rawPacket[i]/1000,space);
+//				bluetooth.SendBuffer(buffer,len);
+//				break;
+//			case Type::UINT16_T:
+//				len=sprintf((char*)buffer, "%d%c",(uint16_t)rawPacket[i],space);
+//				bluetooth.SendBuffer(buffer,len);
+//				break;
+//			case Type::CHAR:
+//				len=sprintf((char*)buffer, "%c%c",(char)rawPacket[i],space);
+//				bluetooth.SendBuffer(buffer,len);
+//				break;
+//		}
+//	}
+//	len=sprintf((char*)buffer,"%c\n",end);
+//	bluetooth.SendBuffer(buffer,len);
+//}
 void TBluetoothModule::task()
 {
-	if(resources->config.c_halt)return;
-	if(libsc::System::Time()-timer[0]
-		<resources->config.c_loopInterval)return;
-	fulfillContract();
-	timer[0]=libsc::System::Time();
+//	if(resources->config.c_halt)return;
+//	if(libsc::System::Time()-timer[0]
+//		<resources->config.c_loopInterval)return;
+//	fulfillContract();
+//	timer[0]=libsc::System::Time();
 }
 
 void TBluetoothModule::loopWhileSuspension()
@@ -80,6 +80,9 @@ void TBluetoothModule::alternateTask()
 			resources->state.magneticSensorReading[3],
 			resources->state.magneticSensorReading[4],
 			resources->state.magneticSensorReading[5]);
+
+//	int len = sprintf((char*)buffer,"%g %g\n",resources->state.getDif(),resources->state.getFrontPairDif());
+//	int len=sprintf((char*)buffer,"%ld %f\n",resources->state.encoderCount,resources->state.getDif());
 	bluetooth.SendBuffer(buffer,len);
 }
 void TBluetoothModule::debugLoop()

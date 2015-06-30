@@ -13,6 +13,7 @@
 #include <PID.h>
 class TServo: public libsc::TrsD05 {
 public:
+	friend class TServoModule;
 	TServo(const Config &config,uint16_t lowerBound,
 			uint16_t upperBound,float multiplier=9);
 	void			setAngleBySignalDifference(float dif);

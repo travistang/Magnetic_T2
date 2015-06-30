@@ -18,6 +18,7 @@ protected:
 	void task();
 	void debugLoop();
 	void loopWhileSuspension();
+	void alternateTask();
 private:
 	bool		lastDirection;
 	uint16_t	lastPower;

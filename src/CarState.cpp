@@ -12,6 +12,8 @@ CarState::CarState(){
 	s_velocity=0;
 	s_servoAngle=900;
 	encoderCount=0;
+	carDistance = -1;
+	s_timeInterval = 1;
 #ifdef USE_BATTERY_METER
 	s_batteryLevel=7;
 #endif
@@ -165,5 +167,30 @@ void CarState::processSensorState(
 
 float CarState::getDif()
 {
-	return magneticSensorReading[4]-magneticSensorReading[5];
+	if(magneticSensorReading[0]+magneticSensorReading[1]==0)return 0;
+	return (magneticSensorReading[0]-magneticSensorReading[1])/(magneticSensorReading[0]+magneticSensorReading[1]);
+}
+
+float CarState::getRightAngDif()
+{
+	return magneticSensorReading[2]-magneticSensorReading[3];
+}
+
+float CarState::getOuterPairAvg()
+{
+	return (magneticSensorReading[4]+magneticSensorReading[5])/2;
+}
+
+float CarState::getFrontPairAvg()
+{
+	return (magneticSensorReading[2]+magneticSensorReading[3])/2;
+}
+
+float CarState::getFrontPairDif()
+{
+	return (magneticSensorReading[2]-magneticSensorReading[3])/(magneticSensorReading[2]+magneticSensorReading[3]);
+}
+bool CarState::isStraightRoad()
+{
+//	if(ABS(getDif())<0.3 && ABS(getFrontPairDif())<)
 }

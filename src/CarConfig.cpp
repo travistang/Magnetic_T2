@@ -25,11 +25,11 @@ CarConfig::CarConfig() :
 
 		c_servoCentralAngle(900),
 
-		c_servoAngleLowerBound(250),
+		c_servoAngleLowerBound(10),
 
 		c_processStateAfterTime(450),	//in ms
 
-		c_servoAngleUpperBound(1350),
+		c_servoAngleUpperBound(1600),
 
 		c_magneticSensorRawReadingMask(0xFF00),
 
@@ -53,12 +53,12 @@ CarConfig::CarConfig() :
 
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
-	c_servoPIDControlVariable[0] = 1.5;
+	c_servoPIDControlVariable[0] = 160;
 	c_servoPIDControlVariable[1] = 0;
 	c_servoPIDControlVariable[2] = 0;
 	c_servoPIDSp = 900;
 
-	c_motorPower = 150;
+	c_motorPower = 120;
 	c_motorRotateClockwise = 0;
 
 	c_magneticSensorLowerBound = 0;
@@ -68,9 +68,9 @@ CarConfig::CarConfig() :
 //	c_magneticSensorTriggerThreshold= 	3;		//for [0,100]
 
 	c_motorPIDEnabled = 0;
-	c_motorPIDControlVariable[0] = 0;
+	c_motorPIDControlVariable[0] = -0.006;
 	c_motorPIDControlVariable[1] = 0;
-	c_motorPIDControlVariable[2] = 0;
+	c_motorPIDControlVariable[2] = 0.0008;
 	c_motorPIDSp = 0;
 
 	c_bluetoothRXThreshold = 2;
@@ -87,6 +87,11 @@ CarConfig::CarConfig() :
 	c_kalmanFilterControlVariable[1] = 1;
 	c_signalTriggerThreshold = 1;
 	c_sensorSignalInvalidThreshold = 6;
+
+
+	c_adaptiveKpParam = 400;
+
+	c_targetEncoderCount = 26000;
 
 }
 

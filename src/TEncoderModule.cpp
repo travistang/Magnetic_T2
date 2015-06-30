@@ -18,6 +18,7 @@ TEncoderModule::TEncoderModule(Resources* resources)
 :Module(resources,ENCODER),encoder(getEncoderConfig(),
 		resources->config.c_loopInterval,
 		resources->config.c_wheelDiameter,
+		resources->config.c_gearRatio,
 		resources->config.c_encoderCountPerRevolution)
 {
 	timer=libsc::System::Time();
@@ -28,9 +29,11 @@ void TEncoderModule::task()
 	encoder.Update();
 	TimerInt dt=libsc::System::Time()-timer;
 	encoder.updateInterval=dt;
-	resources->state.s_velocity
-		=encoder.getCarSpeedByEncoderCount();
-	resources->state.encoderCount=encoder.GetCount();
+	resources->state.s_timeInterval = dt;
+	resources->state.encoderCount
+		=-encoder.GetCount()/(float)dt*1000;
+//	resources->state.encoderCount=encoder.GetCount();
+//	buzz();
 	timer=libsc::System::Time();
 }
 void TEncoderModule::debugLoop()

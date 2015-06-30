@@ -52,7 +52,7 @@ void Module::run()
 		passFlag=false;
 		return;
 	}
-	if(disable)
+	if(disable||resources->config.c_halt)
 	{
 		loopWhileSuspension();
 		return;

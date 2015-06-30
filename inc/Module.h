@@ -23,7 +23,8 @@ public:
 			TUNING,
 			STATE_HANDLER,
 			NULL_MODULE,
-			RECORD
+			RECORD,
+			SONIC
 		};
 	typedef uint16_t TimerInt;
 	Module(Resources* resources,Type type,bool alternate=false);

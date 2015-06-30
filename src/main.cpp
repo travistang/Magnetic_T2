@@ -130,63 +130,68 @@ int main(){
 	r = resources.getResRef();
 	TimerInt time=libsc::System::Time();
 
-	TLedModule* 				   ledModule=new TLedModule(r);
+//	TLedModule* 				   ledModule=new TLedModule(r);
 	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
-//	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
-	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
+	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
+//	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
 	TServoModule* 	  			 servoModule=new TServoModule(r);
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
 	TMotorModule* 	  			 motorModule=new TMotorModule(r);
 	TLcdModule* 				   lcdModule=new TLcdModule(r);
 //	TRecordModule*				recordModule=new TRecordModule(r);
 
-	*ledModule||sensorModule
+	*sensorModule
 //			  ||stateHandlingModule
 			  ||servoModule
 			  ||motorModule
-//			  ||encoderModule
-			  ||lcdModule
-//			  ||bluetoothModule
+			  ||encoderModule
+//			  ||lcdModule
+			  ||bluetoothModule
 //			  ||recordModule
-			  ||ledModule;
+			  ||sensorModule;
 
 
 	/*
 	 * Module configuration
 	 */
-	lcdRef=lcdModule;
+//	lcdRef=lcdModule;
+//	lcdModule->toggleAlternate();
 //	recRef=recordModule;
-	~*stateHandlingModule;
+//	~*stateHandlingModule;
 	~*sensorModule;
 	~*servoModule;
-	 *lcdModule>500;
-//	 bluetoothModule->toggleAlternate();
+//	~*motorModule;
+//	 *lcdModule>500;
+	 motorModule->toggleAlternate();
+	 bluetoothModule->toggleAlternate();
 	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
-//	 recordModule->addRecord(
-//			 new TRecordModule::Record<uint16_t>(servoFetcher,r));
-//	 recordModule->addRecord(new TRecordModule::Record<float>(mg1Fetcher,r));
-//	 recordModule->referenceModule[0]=servoModule;
-	 Module* ptr=ledModule;
+	 Module* ptr=sensorModule;
 //	 recordModule->startRecordingCoordinates();
 //	 Resources::m_instance = &resources;
 	/*
 	 * Misc. initialization
 	 */
 	float reading[4];
-	char  buf[100];
+	Byte  buf[100];
 
 
-	TEncoder::Config enConfig;
-	enConfig.id=0;
-//	TEncoder encoder(enConfig);
+//	TEncoder::Config enConfig;
+//	enConfig.id=0;
+////	TEncoder encoder(enConfig);
+//	TBluetooth::Config btConfig;
+//	btConfig.id = 0;
+//	btConfig.baud_rate = libbase::k60::Uart::Config::BaudRate::k115200;
+//	TBluetooth bt(btConfig);
 
 	while(true){
-//		ptr->buzz();
 		ptr->run();
 		ptr=ptr->getNext();
 		if(ptr==0)break;
-		System::DelayMs(10);
+
+//		int len = sprintf((char*)buf,"%g\n",0.5);
+//		bt.SendBuffer(buf,len);
+		System::DelayMs(30);
 	}
 	return 0;
 }

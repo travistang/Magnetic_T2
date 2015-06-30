@@ -10,10 +10,12 @@
 TEncoder::TEncoder( const Config &config,
 					uint16_t interval,
 					float	wheelDiameter,
+					float   gearRatio,
 					int		countPerRevolution) :
 	libsc::DirEncoder::DirEncoder(config),
 	wheelDiameter(wheelDiameter),
-	countPerRevolution(countPerRevolution)
+	countPerRevolution(countPerRevolution),
+	gearRatio(gearRatio)
 {
 	updateInterval=interval;
 }
@@ -21,13 +23,21 @@ TEncoder::TEncoder( const Config &config,
 float TEncoder::getCarSpeedByEncoderCount()
 {
 	Update();
-	float distance=PI * wheelDiameter
-					  * (float)GetCount() / (float)countPerRevolution;
-	return distance*1000.0f/(float)updateInterval;
+	//TODO is this correct?
+	float distance=2*PI * wheelDiameter *GetCount() / (gearRatio * countPerRevolution);
+	return distance*1000.0f/updateInterval;
 //	return GetCount();
 }
-
+float TEncoder::getCarSpeedByEncoderCount(int32_t count)
+{
+	return PI * wheelDiameter* count / countPerRevolution;
+}
 void TEncoder::setUpdateInterval(uint16_t interval)
 {
 	updateInterval=interval;
+}
+
+float			TEncoder::getDistanceTraveled()
+{
+	return 2*PI * wheelDiameter *GetCount() / (gearRatio * countPerRevolution);
 }

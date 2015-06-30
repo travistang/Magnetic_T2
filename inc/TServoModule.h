@@ -22,6 +22,7 @@ protected:
 private:
 	TServo servo;
 	TimerInt* timer;
+	bool isTurningRightAngle;
 };
 
 #endif /* INC_TSERVOMODULE_H_ */

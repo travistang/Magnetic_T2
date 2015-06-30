@@ -13,9 +13,9 @@ Resources::Resources()
 		,Switch(getSwitchConfig(2)),Switch(getSwitchConfig(3))
 		,Switch(getSwitchConfig(4))
 		,Switch(getSwitchConfig(5))
-		,Switch(getSwitchConfig(6))
+		,Switch(getSwitchConfig(6)),Switch(getSwitchConfig(7))})
 //		,Switch(getSwitchConfig(7))
-})
+		,buttons({Button(getButtonConfig(0)),Button(getButtonConfig(1))})
 {
 /*
  * Complete all initialization of resources here
@@ -76,22 +76,42 @@ Resources::Switch::Config Resources::getSwitchConfig(uint8_t id)
 			config.interrupt = Pin::Config::Interrupt::kBoth;
 			config.isr = &switchListener;
 			break;
-//		case 7:
-//			config.pin = LIBSC_SWITCH7;
-//			config.interrupt = Pin::Config::Interrupt::kFalling;
-//			config.isr = &switchListener;
-//			break;
+		case 7:
+			config.pin = LIBSC_SWITCH7;
+			config.interrupt = Pin::Config::Interrupt::kBoth;
+			config.isr = &switchListener;
+			break;
 		default:
 			break;
 	}
 	return config;
 }
 
+Resources::Button::Config Resources::getButtonConfig(uint8_t id)
+{
+	Resources::Button::Config config;
+	switch(id)
+	{
+		case 0:
+			config.pin = LIBSC_BUTTON0;
+			config.interrupt = Pin::Config::Interrupt::kFalling;
+			config.isr = &buttonListener;
+			break;
+		case 1:
+			config.pin = LIBSC_BUTTON1;
+			config.interrupt = Pin::Config::Interrupt::kFalling;
+			config.isr = &buttonListener;
+			break;
+		default:
+			break;
+	}
+	return config;
+}
 void Resources::switchListener(Gpi* gpi)
 {
 	switch(gpi->GetPin()->GetName())
 	{
-		case LIBSC_SWITCH0:
+		case LIBSC_SWITCH6:
 			m_instance->config.step/=10;
 			m_instance->buzzer.buzz();
 			break;
@@ -115,16 +135,27 @@ void Resources::switchListener(Gpi* gpi)
 			m_instance->config.c_servoPIDControlVariable[0]+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;
-		case LIBSC_SWITCH6:
-//			lcdRef->toggleAlternate();
+		case LIBSC_SWITCH7:
+			m_instance->config.c_targetEncoderCount += m_instance->config.step* m_instance->config.sign;
+			m_instance->buzzer.buzz();
+			m_instance->buzzer.buzz();
 			break;
 		default:
 			break;
 	}
 }
-//function<void(Gpi* gpi)> Resources::&switchListener
-//{
-////	function<void(Gpi* gpi)> func = &switchListener;
-//	m_instance = this;
-//	return &switchListener;
-//}
+
+void Resources::buttonListener(Gpi* gpi)
+{
+	switch(gpi->GetPin()->GetName())
+	{
+		case LIBSC_BUTTON0:
+			m_instance->config.c_motorPower+=100;
+			break;
+		case LIBSC_BUTTON1:
+			m_instance->config.c_motorPower -= 100;
+			break;
+		default:
+			break;
+	}
+}

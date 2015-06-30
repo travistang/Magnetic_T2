@@ -14,7 +14,7 @@
 #include <cstring>
 using namespace LIBSC_NS;
 using namespace LIBBASE_NS;
-class TBluetoothModule: public Module ,public TOutsourcer{
+class TBluetoothModule: public Module{
 public:
 	typedef std::function<bool(const std::vector<Byte>&)> OnReceiveListener;
 	TBluetoothModule(Resources* resources);
@@ -28,8 +28,8 @@ protected:
 	void loopWhileSuspension();
 	void debugLoop();
 	void alternateTask();
-	void work(Contract::InputType* resolveKey,uint32_t* rawPacket,
-			const char start,const char end,const char space);
+//	void work(Contract::InputType* resolveKey,uint32_t* rawPacket,
+//			const char start,const char end,const char space);
 private:
 	JyMcuBt106::Config getBluetoothConfig(OnReceiveListener listener=0)
 	{

@@ -32,9 +32,13 @@ public:
 private:
 
 	typedef Gpi Switch;
-	Switch		switches[7];
+	typedef Gpi Button;
+	Switch		switches[8];
+	Button		buttons[2];
 	Switch::Config getSwitchConfig(uint8_t id);
+	Button::Config getButtonConfig(uint8_t id);
 	static void switchListener(Gpi* gpi);
+	static void buttonListener(Gpi* gpi);
 	function<void(Gpi* gpi)> getListener();
 };
 #endif

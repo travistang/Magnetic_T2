@@ -21,7 +21,17 @@ TMotorModule::TMotorModule(Resources* resources)
 	motor.SetPower(lastPower);
 	lastDirection=resources->config.c_motorRotateClockwise;
 	motor.SetClockwise(lastDirection);
+
+	motor.pid.removeAutomat();
+
+//	motor.pid.addAutomat([this](uint16_t err,float& p,float& i ,float& d)
+//	{
+//		uint16_t dist = this->resources->state.carDistance;
+//		uint16_t param  = 1;
+//		motor.pid.setSp(dist*param);
+//	});
 }
+
 TMotorModule::~TMotorModule()
 {
 	delete timer;
@@ -40,19 +50,29 @@ void TMotorModule::loopWhileSuspension()
 {
 	motor.SetPower(0);
 	lastPower=0;
-	debugLoop();
 }
 
 void TMotorModule::task()
 {
-	if(lastPower!=resources->config.c_motorPower)
-	{
-		motor.SetPower(resources->config.c_motorPower);
-		lastPower=motor.GetPower();
-	}
-	if(lastDirection!=resources->config.c_motorRotateClockwise)
-	{
-		motor.SetClockwise(!lastDirection);
-		lastDirection=!lastDirection;
-	}
+	motor.pid.setParam(resources->config.c_motorPIDControlVariable[0]
+					  ,resources->config.c_motorPIDControlVariable[1]
+					  ,resources->config.c_motorPIDControlVariable[2]);
+//	if(lastPower!=resources->config.c_motorPower)
+//	{
+//		//TODO fix the parameter below
+//		motor.setSpeedWithPID(resources->state.encoderCount);
+//		lastPower=motor.GetPower();
+//	}
+	motor.SetClockwise(resources->config.c_motorRotateClockwise);
+//	uint16_t dif =  ABS(900-resources->config.c_servoAngle);
+//	float param  = 1;
+//	motor.SetPower(resources->config.c_motorPower/dif*param);
+	motor.setSpeedWithPID(resources->config.c_targetEncoderCount);
+	motor.tunePower(resources->state.encoderCount);
+
+}
+
+void TMotorModule::alternateTask()
+{
+	motor.SetPower(resources->config.c_motorPower);
 }

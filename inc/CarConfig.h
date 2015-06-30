@@ -47,6 +47,7 @@ public:
 	volatile float      c_servoPIDSp;
 	volatile uint16_t 	c_motorPower;
 	volatile bool 	  	c_motorRotateClockwise;
+	volatile int32_t	c_targetEncoderCount;
 
 	const	 float		c_magneticSensorFrontWheelDistance;
 	const 	 int 		c_magneticSensorCount;
@@ -89,6 +90,7 @@ public:
 	const	 int		c_encoderCountPerRevolution;
 	const	 float		c_gearRatio;		//Tire gear/motor gear
 	volatile float		c_sensorSignalInvalidThreshold;
+	volatile float		c_adaptiveKpParam;
 
 	float				getStep();
 	int					getSign();

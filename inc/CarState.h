@@ -23,6 +23,7 @@ public:
 #endif
 	float				s_velocity;
 	float				s_servoAngle;
+	TimerInt			s_timeInterval;
 #ifdef	CAR_STATE_HANDLING
 	enum		Situation
 	{
@@ -86,7 +87,7 @@ public:
 	void							updateSituation();
 #if	VERSION>=2L
 	float*							magneticSensorReading;
-	uint16_t						encoderCount;
+	int32_t							encoderCount;
 #endif
 #if STATE_HANDLING_ROUTINE == 1
 	SituationScheduler::Event		getTask();
@@ -96,8 +97,14 @@ public:
 	float							getDistance();
 #endif
 	SituationScheduler	scheduler;
+	uint32_t			carDistance;
 #endif
 	float							getDif();
+	float 							getRightAngDif();
+	float 							getOuterPairAvg();
+	float							getFrontPairAvg();
+	float							getFrontPairDif();
+	bool 							isStraightRoad();
 };
 
 #endif /* SRC_CARSTATE_H_ */
