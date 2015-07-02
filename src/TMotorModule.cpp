@@ -15,6 +15,7 @@ TMotorModule* __motorRef;
 void TMotorModule::remoteListener(libbase::k60::Gpi* gpi)
 {
 //	if(gpi->GetPin()->GetName() == libbase::k60::Pin::Name::kPtd15)
+		__motorRef->toggleAlternate();
 		__motorRef->suspend();
 //		libsc::System::DelayS(10);
 }
@@ -64,6 +65,8 @@ void TMotorModule::debugLoop()
 
 void TMotorModule::loopWhileSuspension()
 {
+	motor.SetClockwise(!resources->config.c_motorRotateClockwise);
+	libsc::System::DelayMs(500);
 	motor.SetPower(0);
 	lastPower=0;
 }

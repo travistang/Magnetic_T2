@@ -9,6 +9,7 @@
 #define INC_TMOTORMODULE_H_
 #include <TMotor.h>
 #include <Module.h>
+#include <libbase/k60/gpio.h>
 #if VERSION >= 2L
 class TMotorModule: public Module {
 public:
@@ -20,9 +21,12 @@ protected:
 	void loopWhileSuspension();
 	void alternateTask();
 private:
+	libbase::k60::Gpi			gpi;
 	bool		lastDirection;
 	uint16_t	lastPower;
 	TMotor		motor;
+	static libbase::k60::Gpi::Config getGpiConfig();
+	static void remoteListener(libbase::k60::Gpi* gpi);
 };
 #endif
 #endif /* INC_TMOTORMODULE_H_ */
