@@ -30,6 +30,7 @@ LIBBASE_NS::Mcg::Config Mcg::GetMcgConfig(){
 Resources* r;
 TLcdModule* lcdRef;
 TRecordModule* recRef;
+TMotorModule* motorRef;
 typedef uint16_t TimerInt;
 //TODO complete the listener
 bool listener(const std::vector<Byte> bytes )
@@ -115,7 +116,7 @@ bool listener(const std::vector<Byte> bytes )
 			lcdRef->toggleAlternate();
 			break;
 		case 'm':
-			lcdRef->suspend();
+			motorRef->suspend();
 			break;
 		}
 	return true;
@@ -162,10 +163,11 @@ int main(){
 	~*servoModule;
 //	~*motorModule;
 //	 *lcdModule>500;
+	 motorRef = motorModule;
 	 motorModule->toggleAlternate();
 	 bluetoothModule->toggleAlternate();
-	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
-	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
+//	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
+//	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
 	 Module* ptr=sensorModule;
 //	 recordModule->startRecordingCoordinates();
 //	 Resources::m_instance = &resources;
@@ -191,7 +193,7 @@ int main(){
 
 //		int len = sprintf((char*)buf,"%g\n",0.5);
 //		bt.SendBuffer(buf,len);
-		System::DelayMs(30);
+//		System::DelayMs(30);
 	}
 	return 0;
 }

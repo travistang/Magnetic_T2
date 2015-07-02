@@ -264,9 +264,9 @@ private:
 			return;
 		}
 //		if(input>-0.22&&input<0.22)return;
-		float a = 1200;
-		if(!IN_RANGE(input,0,0.7)) a += 1600;
-		kp += (a*input*input +120); // a is the coef. that needs to be explored;
+		float a = 2000;
+//		if(!IN_RANGE(input,0,0.7)) a += 1600;
+		kp += (a*input*input + 0); // a is the coef. that needs to be explored;
 
 	}
 
@@ -278,9 +278,9 @@ private:
 //
 //		kd *= pow(E, -input* input/(2*c*c));	//the Gaussian curve, which is believed to suit the adapting D control value
 		return;
-		if(IN_RANGE(input,0,25))
+		if(IN_RANGE(input,0,0.2))
 		{
-			kd = 9000;
+			kd = 110000;
 		}
 	}
 };

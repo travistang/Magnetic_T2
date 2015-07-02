@@ -29,7 +29,7 @@ CarConfig::CarConfig() :
 
 		c_processStateAfterTime(450),	//in ms
 
-		c_servoAngleUpperBound(1600),
+		c_servoAngleUpperBound(1800),
 
 		c_magneticSensorRawReadingMask(0xFF00),
 
@@ -53,12 +53,12 @@ CarConfig::CarConfig() :
 
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
-	c_servoPIDControlVariable[0] = 160;
+	c_servoPIDControlVariable[0] = 400;
 	c_servoPIDControlVariable[1] = 0;
 	c_servoPIDControlVariable[2] = 0;
 	c_servoPIDSp = 900;
 
-	c_motorPower = 120;
+	c_motorPower = 200;
 	c_motorRotateClockwise = 0;
 
 	c_magneticSensorLowerBound = 0;
