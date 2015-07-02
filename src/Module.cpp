@@ -28,11 +28,11 @@ Module::~Module()
 
 void Module::suspend()
 {
-	if(disable)
-	{
-		disable=false;
-		return;
-	}
+//	if(disable)
+//	{
+//		disable=false;
+//		return;
+//	}
 	disable=true;
 }
 

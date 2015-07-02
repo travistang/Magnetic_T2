@@ -212,6 +212,9 @@ public:
 					};
 
 	B				defaultResult;
+
+	float						adaptivePFactor;
+
 private:
 	float 			m_kp,
 					m_ki,
@@ -253,6 +256,7 @@ private:
 	TimerInt 					m_refreshInterval;
 	TimerInt 					m_lastUpdate;
 	AutomatList 				m_automatList;
+
 	A 							m_integral;
 	A 							m_differential;
 	A 							m_last_error;
@@ -264,7 +268,8 @@ private:
 			return;
 		}
 //		if(input>-0.22&&input<0.22)return;
-		float a = 2000;
+		//TODO important :)
+		float a = 1200;
 //		if(!IN_RANGE(input,0,0.7)) a += 1600;
 		kp += (a*input*input + 0); // a is the coef. that needs to be explored;
 

@@ -11,9 +11,23 @@
 		config.id=0;
 		return config;
 	}
-
+TMotorModule* __motorRef;
+void TMotorModule::remoteListener(libbase::k60::Gpi* gpi)
+{
+//	if(gpi->GetPin()->GetName() == libbase::k60::Pin::Name::kPtd15)
+		__motorRef->suspend();
+//		libsc::System::DelayS(10);
+}
+	libbase::k60::Gpi::Config TMotorModule::getGpiConfig()
+	{
+		libbase::k60::Gpi::Config config;
+		config.pin = libbase::k60::Pin::Name::kPtd15;
+		config.interrupt = libbase::k60::Pin::Config::Interrupt::kFalling;
+		config.isr = &remoteListener;
+		return config;
+	}
 TMotorModule::TMotorModule(Resources* resources)
-:Module(resources,MOTOR),motor(getMotorConfig())
+:Module(resources,MOTOR),motor(getMotorConfig()),gpi(getGpiConfig())
 {
 	timer=new TimerInt[1];
 	timer[0]=libsc::System::Time();
@@ -23,6 +37,8 @@ TMotorModule::TMotorModule(Resources* resources)
 	motor.SetClockwise(lastDirection);
 
 	motor.pid.removeAutomat();
+
+	__motorRef = this;
 
 //	motor.pid.addAutomat([this](uint16_t err,float& p,float& i ,float& d)
 //	{

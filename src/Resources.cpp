@@ -73,12 +73,12 @@ Resources::Switch::Config Resources::getSwitchConfig(uint8_t id)
 			break;
 		case 6:
 			config.pin = LIBSC_SWITCH6;
-			config.interrupt = Pin::Config::Interrupt::kBoth;
+			config.interrupt = Pin::Config::Interrupt::kFalling;
 			config.isr = &switchListener;
 			break;
 		case 7:
 			config.pin = LIBSC_SWITCH7;
-			config.interrupt = Pin::Config::Interrupt::kBoth;
+			config.interrupt = Pin::Config::Interrupt::kFalling;
 			config.isr = &switchListener;
 			break;
 		default:
@@ -128,7 +128,7 @@ void Resources::switchListener(Gpi* gpi)
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH4:
-			m_instance->config.c_servoPIDControlVariable[1]+=m_instance->config.step*m_instance->config.sign;
+			m_instance->config.c_adaptiveKpParam+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH5:
@@ -136,8 +136,10 @@ void Resources::switchListener(Gpi* gpi)
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH7:
-			m_instance->config.c_targetEncoderCount += m_instance->config.step* m_instance->config.sign;
-			m_instance->buzzer.buzz();
+//			m_instance->config.c_targetEncoderCount += m_instance->config.step* m_instance->config.sign;
+//			m_instance->buzzer.buzz();
+//			m_instance->buzzer.buzz();
+			m_instance->config.c_adaptiveKpParam+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;
 		default:

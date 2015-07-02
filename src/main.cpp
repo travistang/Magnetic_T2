@@ -146,7 +146,7 @@ int main(){
 			  ||servoModule
 			  ||motorModule
 			  ||encoderModule
-//			  ||lcdModule
+			  ||lcdModule
 			  ||bluetoothModule
 //			  ||recordModule
 			  ||sensorModule;

@@ -23,9 +23,9 @@ void TLcdModule::task() {
 			<< "Car dist:"<<resources->state.carDistance<< TLcd::endl
 //			<< "FrontAvg:"<<(float)resources->state.getFrontPairAvg()<< TLcd::endl
 			<< "OuterAvg: "<< (float)resources->state.getOuterPairAvg()<< TLcd::endl
-			<< "Encoder/s: "<< resources->state.encoderCount<< TLcd::endl
+//			<< "Encoder/s: "<< resources->state.encoderCount<< TLcd::endl
 			<< "P:"<< (float)resources->config.c_servoPIDControlVariable[0]<<TLcd::endl
-			<< "I:"<< (float)resources->config.c_servoPIDControlVariable[1]<<TLcd::endl
+			<< "a:"<< (float)resources->config.c_adaptiveKpParam<<TLcd::endl
 			<< "D:" << (float)resources->config.c_servoPIDControlVariable[2]<<TLcd::endl
 			<< " Step:"<< resources->config.getStep()*resources->config.getSign() << TLcd::endl;
 		//			<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl

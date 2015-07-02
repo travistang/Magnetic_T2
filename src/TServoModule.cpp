@@ -15,7 +15,6 @@ servo({0}
 		,resources->config.c_servoAngleMultiplier)
 {
 	timer=new TimerInt[1];
-
 }
 TServoModule::~TServoModule()
 {
@@ -64,6 +63,7 @@ void TServoModule::loopWhileSuspension()
 
 #define RIGHT_ANGLE
 #ifdef RIGHT_ANGLE
+	//TODO important :)
 	if((resources->state.getOuterPairAvg())<8&&resources->state.getOuterPairAvg()>-8)
 	{
 //		buzz();
@@ -77,6 +77,7 @@ void TServoModule::loopWhileSuspension()
 	}else
 	{
 #endif
+		servo.pid.adaptivePFactor = resources->config.c_adaptiveKpParam;
 		servo.SetDegreeWithPID(resources->state.getDif());
 #ifdef RIGHT_ANGLE
 	}
