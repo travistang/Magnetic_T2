@@ -63,7 +63,7 @@ TLcd::TBatteryMeter::TBatteryMeter(Resources* r)
  m_lastVoltage(0),
  m_batteryMinVoltage(r->config.c_batteryMinVoltage),
  m_batteryMaxVoltage(r->config.c_batteryMaxVoltage),
-	m_batteryReferenceRange(m_batteryMaxVoltage - m_batteryMinVoltage),
+ m_batteryReferenceRange(m_batteryMaxVoltage - m_batteryMinVoltage),
  m_batteryLowColor(r->config.c_batteryLowColor),
  m_batteryNormalColor(r->config.c_batteryNormalColor),
  m_batteryHighColor(r->config.c_batteryHighColor)

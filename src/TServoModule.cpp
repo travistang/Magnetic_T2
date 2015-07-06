@@ -23,10 +23,11 @@ TServoModule::~TServoModule()
 }
 void TServoModule::task()
 {
-	servo.SetPID(resources->config.c_servoPIDControlVariable[0],
-			resources->config.c_servoPIDControlVariable[1],
-			resources->config.c_servoPIDControlVariable[2]);
-	servo.SetDegreeWithPID(resources->state.getDif());
+//	servo.SetPID(resources->config.c_servoPIDControlVariable[0],
+//			resources->config.c_servoPIDControlVariable[1],
+//			resources->config.c_servoPIDControlVariable[2]);
+//	servo.SetDegreeWithPID(resources->state.getDif());
+	servo.SetDegree(resources->config.c_servoCentralAngle);
 }
 void TServoModule::loopWhileSuspension()
 {

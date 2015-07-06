@@ -88,9 +88,16 @@ public:
 	const	 float		c_wheelDiameter;	//in m
 	const	 int		c_encoderCountPerRevolution;
 	const	 float		c_gearRatio;		//Tire gear/motor gear
+
+	volatile float		c_batteryVoltage;
+
 	volatile float		c_sensorSignalInvalidThreshold;
 	volatile float		c_adaptiveKpParam;
 	volatile float		c_adaptiveKpBaseParam;
+
+	volatile bool		c_motorShouldSuspend;
+	volatile bool		c_servoShouldSuspend;
+	volatile bool		c_lcdShouldToggle;
 
 	float				getStep();
 	int					getSign();

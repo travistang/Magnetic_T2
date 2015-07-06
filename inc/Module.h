@@ -54,8 +54,7 @@ public:
 	Type		 	getType();
 	Module* getNext(Type type);
 	void buzz(uint16_t interval=1);
-	static libsc::Joystick joystick;
-	libsc::Joystick::Config getJostickConfig();
+
 protected:
 	Contract	  contract;
 	const Type	  type;

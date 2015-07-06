@@ -16,6 +16,7 @@ Resources::Resources()
 		,Switch(getSwitchConfig(6)),Switch(getSwitchConfig(7))})
 //		,Switch(getSwitchConfig(7))
 		,buttons({Button(getButtonConfig(0)),Button(getButtonConfig(1))})
+		,joystick(getJoystickConfig())
 {
 /*
  * Complete all initialization of resources here
@@ -161,4 +162,39 @@ void Resources::buttonListener(Gpi* gpi)
 		default:
 			break;
 	}
+}
+
+libsc::Joystick::Config Resources::getJoystickConfig()
+{
+	libsc::Joystick::Config config;
+	config.id = 0;
+	for(int i = 0;i < 5; i++)
+	{
+		config.listener_triggers[i] = libsc::Joystick::Config::Trigger::kDown;
+	}
+	/*
+	 * Sequence:
+	 *
+	 *  kUp,
+		kDown,
+		kLeft,
+		kRight,
+		kSelect,
+		kIdle
+	 */
+
+	config.listeners[0] = [this](const uint16_t a)
+		{
+			(this->config.c_servoShouldSuspend) = !(this->config.c_servoShouldSuspend);
+		};
+	config.listeners[1] = [this](const uint16_t a)
+		{
+			(this->config.c_lcdShouldToggle) = !(this->config.c_lcdShouldToggle);
+		};
+	config.listeners[4] = [this](const uint16_t a)
+		{
+			(this->config.c_motorShouldSuspend) = !(this->config.c_motorShouldSuspend);
+		};
+
+	return config;
 }

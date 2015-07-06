@@ -61,5 +61,5 @@ void TLcdModule::alternateTask()
 			<< "4: "<< (float)resources->state.magneticSensorReading[4]<< TLcd::endl
 			<< "5: "<< (float)resources->state.magneticSensorReading[5]<< TLcd::endl
 			<< "p:"<<(float)resources->config.c_servoPIDControlVariable[0]<< TLcd::endl
-			<< "OuterDif: "<< (float)resources->state.getFrontPairDif()<< TLcd::endl;
+			<<"Enc.:"<< resources->state.encoderCount<< TLcd::endl;
 }

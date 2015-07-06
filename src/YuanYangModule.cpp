@@ -8,6 +8,8 @@
 #include "YuanYangModule.h"
 
 YuanYangModule::YuanYangModule(Resources* r) : Module(r,SONIC)
+//,batteryMeter(getBmConfig())
+//,batteryMeter({r->config.c_voltmeterVoltageRatio})
 {}
 
 
@@ -27,3 +29,18 @@ void YuanYangModule::task()
 		resources->state.carDistance = -1;
 	}
 }
+
+//void YuanYangModule::checkVoltage()
+//{
+//	resources->config.c_batteryVoltage = batteryMeter.GetVoltage();
+//	if(resources->config.c_batteryVoltage <= resources->config.c_batteryMinVoltage)
+//		while(1)
+//			buzz();
+//}
+
+//libsc::BatteryMeter::Config YuanYangModule::getBmConfig()
+//{
+//	libsc::BatteryMeter::Config config;
+//	config.voltage_ratio = resources->config.c_voltmeterVoltageRatio;
+//	return config;
+//}

@@ -13,6 +13,7 @@
 #include <TBuzzer.h>
 //#include <TLcdModule.h>
 #include "libbase/k60/gpio.h"
+#include "libsc/joystick.h"
 #if	VERSION>=2L
 class Resources {
 public:
@@ -37,9 +38,11 @@ private:
 	Button		buttons[2];
 	Switch::Config getSwitchConfig(uint8_t id);
 	Button::Config getButtonConfig(uint8_t id);
+	libsc::Joystick::Config getJoystickConfig();
 	static void switchListener(Gpi* gpi);
 	static void buttonListener(Gpi* gpi);
 	function<void(Gpi* gpi)> getListener();
+	libsc::Joystick joystick;
 };
 #endif
 #endif /* INC_RESOURCES_H_ */

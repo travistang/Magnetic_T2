@@ -16,6 +16,7 @@
 #include <TEncoderModule.h>
 #include <TLcdModule.h>
 #include <TRecordModule.h>
+#include <YuanYangModule.h>
 #include <functional>
 using namespace LIBBASE_NS;
 using namespace libsc;
@@ -139,16 +140,17 @@ int main(){
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
 	TMotorModule* 	  			 motorModule=new TMotorModule(r);
 	TLcdModule* 				   lcdModule=new TLcdModule(r);
-//	TRecordModule*				recordModule=new TRecordModule(r);
+//	YuanYangModule*					yyModule=new YuanYangModule(r);
 
 	*sensorModule
 //			  ||stateHandlingModule
 			  ||servoModule
 			  ||motorModule
-//			  ||encoderModule
+			  ||encoderModule
 			  ||lcdModule
 			  ||bluetoothModule
 //			  ||recordModule
+//			  ||yyModule
 			  ||sensorModule;
 
 
@@ -176,15 +178,6 @@ int main(){
 	 */
 	float reading[4];
 	Byte  buf[100];
-
-
-//	TEncoder::Config enConfig;
-//	enConfig.id=0;
-////	TEncoder encoder(enConfig);
-//	TBluetooth::Config btConfig;
-//	btConfig.id = 0;
-//	btConfig.baud_rate = libbase::k60::Uart::Config::BaudRate::k115200;
-//	TBluetooth bt(btConfig);
 
 	while(true){
 //		ptr->buzz();

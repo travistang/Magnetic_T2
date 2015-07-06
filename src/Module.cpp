@@ -55,6 +55,21 @@ void Module::run()
 	return;
 #endif
 	if(resources==0)disable=true;
+	switch(this->type)
+	{
+		case MOTOR:
+			disable = resources->config.c_motorShouldSuspend;
+			break;
+		case SERVO:
+			disable = resources->config.c_servoShouldSuspend;
+			break;
+		case LCD:
+			alternate = resources->config.c_lcdShouldToggle;
+			break;
+		default:
+			break;
+	}
+
 	if(passFlag)
 	{
 		passFlag=false;
@@ -229,22 +244,3 @@ void Module::buzz(uint16_t interval)
 #endif
 
 
-
-libsc::Joystick::Config Module::getJostickConfig()
-{
-	using namespace libsc;
-	Joystick::Config config;
-	config.id = 0;
-	for(int i = 0; i<5; i++)
-	{
-		config.listener_triggers[i] = Joystick::Config::Trigger::kDown;
-	}
-	config.listeners[4] = [modulePtr](const uint8_t id)
-	{
-		if(modulePtr->type == Module::Type::LCD)
-		{
-			modulePtr->toggleAlternate();
-		}
-	};
-	return config;
-}

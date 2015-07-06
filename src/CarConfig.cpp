@@ -54,8 +54,7 @@ CarConfig::CarConfig() :
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
 	//TODO important :)
-	c_servoPIDControlVariable[0] = 200;
-
+	c_servoPIDControlVariable[0] = 240;
 	c_servoPIDControlVariable[1] = 0;
 	c_servoPIDControlVariable[2] = 0;
 	c_servoPIDSp = 900;
@@ -70,9 +69,9 @@ CarConfig::CarConfig() :
 //	c_magneticSensorTriggerThreshold= 	3;		//for [0,100]
 
 	c_motorPIDEnabled = 0;
-	c_motorPIDControlVariable[0] = -0.006;
+	c_motorPIDControlVariable[0] = -1;
 	c_motorPIDControlVariable[1] = 0;
-	c_motorPIDControlVariable[2] = 0.0008;
+	c_motorPIDControlVariable[2] = 0;
 	c_motorPIDSp = 0;
 
 	c_bluetoothRXThreshold = 2;
@@ -90,13 +89,17 @@ CarConfig::CarConfig() :
 	c_signalTriggerThreshold = 1;
 	c_sensorSignalInvalidThreshold = 6;
 
-
-	c_adaptiveKpParam = 50;
-
-	c_adaptiveKpBaseParam = 680;
+	//a
+	c_adaptiveKpParam = 465;
+	//b
+	c_adaptiveKpBaseParam = 710;
 
 	c_targetEncoderCount = 26000;
 
+	c_motorShouldSuspend = true;
+	c_servoShouldSuspend = false;
+	c_lcdShouldToggle = false;
+	c_batteryVoltage = 8;
 }
 
 float				CarConfig::getStep()
