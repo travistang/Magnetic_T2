@@ -8,6 +8,7 @@
 #ifndef INC_MODULE_H_
 #define INC_MODULE_H_
 #include "Resources.h"
+#include "libsc/joystick.h"
 #include "Contract.h"
 class Module {
 public:
@@ -52,7 +53,9 @@ public:
 	virtual void	operator!();
 	Type		 	getType();
 	Module* getNext(Type type);
-	void buzz(uint16_t interval=10);
+	void buzz(uint16_t interval=1);
+	static libsc::Joystick joystick;
+	libsc::Joystick::Config getJostickConfig();
 protected:
 	Contract	  contract;
 	const Type	  type;

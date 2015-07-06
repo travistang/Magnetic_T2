@@ -6,7 +6,7 @@
  */
 
 #include "CarState.h"
-
+#define ABS(x) (x<0)?-(x):(x)
 
 CarState::CarState(){
 	s_velocity=0;
@@ -180,7 +180,11 @@ float CarState::getOuterPairAvg()
 {
 	return (magneticSensorReading[4]+magneticSensorReading[5])/2;
 }
-
+float CarState::getOuterPairDif()
+{
+	if(magneticSensorReading[4]+magneticSensorReading[5] == 0)return 0;
+		return (magneticSensorReading[4]-magneticSensorReading[5])/(magneticSensorReading[4]+magneticSensorReading[5]);
+}
 float CarState::getFrontPairAvg()
 {
 	return (magneticSensorReading[2]+magneticSensorReading[3])/2;
@@ -188,9 +192,20 @@ float CarState::getFrontPairAvg()
 
 float CarState::getFrontPairDif()
 {
+	if(magneticSensorReading[2]+magneticSensorReading[3] == 0)return 0;
 	return (magneticSensorReading[2]-magneticSensorReading[3])/(magneticSensorReading[2]+magneticSensorReading[3]);
+}
+
+float abs(float x)
+{
+	if(x<0)return -x;
+	return x;
 }
 bool CarState::isStraightRoad()
 {
-//	if(ABS(getDif())<0.3 && ABS(getFrontPairDif())<)
+//	return (ABS(getFrontPairDif())<0.15);
+//	float frontDif = getFrontPairDif();
+	float frontDif = abs(getFrontPairDif());
+	float dif = abs(getDif());
+	return (abs(frontDif-dif)<0.1f);
 }

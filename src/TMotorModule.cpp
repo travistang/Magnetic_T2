@@ -41,12 +41,12 @@ TMotorModule::TMotorModule(Resources* resources)
 
 	__motorRef = this;
 
-//	motor.pid.addAutomat([this](uint16_t err,float& p,float& i ,float& d)
-//	{
-//		uint16_t dist = this->resources->state.carDistance;
-//		uint16_t param  = 1;
-//		motor.pid.setSp(dist*param);
-//	});
+	motor.pid.addAutomat([this](uint16_t err,float& p,float& i ,float& d)
+	{
+		uint16_t dist = this->resources->state.carDistance;
+		uint16_t param  = 1;
+		motor.pid.setSp(dist*param);
+	});
 }
 
 TMotorModule::~TMotorModule()

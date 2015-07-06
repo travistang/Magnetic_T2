@@ -11,7 +11,7 @@
 #include <deque>
 #include <Config.h>
 #include <libsc/System.h>
-#include <MagneticSensor.h>
+//#include <MagneticSensor.h>
 
 class CarState {
 public:
@@ -103,6 +103,7 @@ public:
 	float 							getRightAngDif();
 	float 							getOuterPairAvg();
 	float							getFrontPairAvg();
+	float							getOuterPairDif();
 	float							getFrontPairDif();
 	bool 							isStraightRoad();
 };

@@ -15,6 +15,7 @@ servo({0}
 		,resources->config.c_servoAngleMultiplier)
 {
 	timer=new TimerInt[1];
+	servo.pid.resources = resources;
 }
 TServoModule::~TServoModule()
 {
@@ -22,62 +23,36 @@ TServoModule::~TServoModule()
 }
 void TServoModule::task()
 {
-	servo.SetDegree(resources->config.c_servoAngle);
+	servo.SetPID(resources->config.c_servoPIDControlVariable[0],
+			resources->config.c_servoPIDControlVariable[1],
+			resources->config.c_servoPIDControlVariable[2]);
+	servo.SetDegreeWithPID(resources->state.getDif());
 }
 void TServoModule::loopWhileSuspension()
 {
 	servo.SetPID(resources->config.c_servoPIDControlVariable[0],
 			resources->config.c_servoPIDControlVariable[1],
 			resources->config.c_servoPIDControlVariable[2]);
-//			if(resources->state.getRightAngDif()>110||resources->state.getRightAngDif()<-110)
-//			{
-//				isTurningRightAngle = true;
-//			}
-//
-//			if(isTurningRightAngle)
-//			{
-//				if(resources->state.getRightAngDif()>40||resources->state.getRightAngDif()<-40)
-//				{
-//
-//					if(resources->state.getRightAngDif()<0)
-//					{
-//						servo.SetDegree(600);
-//					}else
-//					{
-//						 servo.SetDegree(1450);
-//					}
-//
-//				}else
-//				{
-//					isTurningRightAngle = false;
-//					servo.SetDegreeWithPID(resources->state.getDif());
-//				}
-//
-//			}else
-//			{
-//				servo.SetDegreeWithPID(resources->state.getDif());
-//			}
 
-//	if((resources->state.getDif()>0.22)||resources->state.getDif()<-0.22)buzz();
-//	if(IN_RANGE(resources->state.getDif(),0,0.15))buzz();
-
-#define RIGHT_ANGLE
+//#define RIGHT_ANGLE
 #ifdef RIGHT_ANGLE
 	//TODO important :)
-	if((resources->state.getOuterPairAvg())<8&&resources->state.getOuterPairAvg()>-8)
+//	if(resources->state.isStraightRoad())buzz();
+	if((resources->state.getOuterPairAvg())<20&&resources->state.getOuterPairAvg()>-20&&!resources->state.isStraightRoad())
 	{
 //		buzz();
-		if(resources->state.getRightAngDif()<0)
+		if(resources->state.getOuterPairDif()>0)
 		{
-			servo.SetDegree(600);
+			servo.SetDegree(400);
 		}else
 		{
-			servo.SetDegree(1250);
+			servo.SetDegree(1450);
 		}
 	}else
 	{
 #endif
 		servo.pid.adaptivePFactor = resources->config.c_adaptiveKpParam;
+		servo.pid.adaptivePBaseFactor = resources->config.c_adaptiveKpBaseParam;
 		servo.SetDegreeWithPID(resources->state.getDif());
 #ifdef RIGHT_ANGLE
 	}

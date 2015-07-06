@@ -124,10 +124,11 @@ void Resources::switchListener(Gpi* gpi)
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH3:
-			m_instance->config.c_servoPIDControlVariable[2]+=m_instance->config.step*m_instance->config.sign;
+			m_instance->config.c_adaptiveKpBaseParam+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH4:
+			//should have broken:(
 			m_instance->config.c_adaptiveKpParam+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;

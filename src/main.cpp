@@ -145,7 +145,7 @@ int main(){
 //			  ||stateHandlingModule
 			  ||servoModule
 			  ||motorModule
-			  ||encoderModule
+//			  ||encoderModule
 			  ||lcdModule
 			  ||bluetoothModule
 //			  ||recordModule
@@ -164,7 +164,7 @@ int main(){
 //	~*motorModule;
 //	 *lcdModule>500;
 	 motorRef = motorModule;
-	 motorModule->toggleAlternate();
+//	 motorModule->toggleAlternate();
 	 bluetoothModule->toggleAlternate();
 //	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 //	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
@@ -187,6 +187,7 @@ int main(){
 //	TBluetooth bt(btConfig);
 
 	while(true){
+//		ptr->buzz();
 		ptr->run();
 		ptr=ptr->getNext();
 		if(ptr==0)break;

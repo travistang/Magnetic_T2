@@ -21,9 +21,7 @@ TBuzzer::TBuzzer() :gpo(getConfig()){
 void TBuzzer::buzz(uint16_t interval)
 {
 	if(interval<=0)return;
-	uint16_t time=libsc::System::Time();
+//	uint16_t time=libsc::System::Time();
 	gpo.Set(true);
-	while(libsc::System::Time()-interval<time)
-	{}
 	gpo.Set(false);
 }

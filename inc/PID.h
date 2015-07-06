@@ -15,11 +15,15 @@
 //#include <LinkedList.h>
 #include <vector>
 #include <math.h>
+#include <Resources.h>
 #define ABS(a) ((a<0)?-a:a)
 #define IN_RANGE(v,c,d) ((ABS(v-c)<=d)?1:0)
 class GeneralPID{
+public:
 
 };
+
+
 template<typename A,typename B> // A in, B out
 class PID :GeneralPID{
 public:
@@ -213,7 +217,9 @@ public:
 
 	B				defaultResult;
 
-	float						adaptivePFactor;
+	static float			adaptivePFactor;
+	static float			adaptivePBaseFactor;
+	static Resources*		resources;
 
 private:
 	float 			m_kp,
@@ -263,15 +269,16 @@ private:
 
 	static void			adaptivePController(A input,float& kp,float& ki,float& kd)
 	{
-		if(IN_RANGE(input,0,0.2))
+//		resources->buzzer.buzz(1);
+		if(resources->state.isStraightRoad())
 		{
 			return;
 		}
-//		if(input>-0.22&&input<0.22)return;
+		resources->buzzer.buzz(1);
 		//TODO important :)
-		float a = 1200;
+		float a = adaptivePFactor;
 //		if(!IN_RANGE(input,0,0.7)) a += 1600;
-		kp += (a*input*input + 0); // a is the coef. that needs to be explored;
+		kp = (a*input*input + adaptivePBaseFactor); // a is the coef. that needs to be explored;
 
 	}
 
@@ -282,12 +289,29 @@ private:
 //			  c = 5;			//The width of the bell curve. Which is supposed to be small and it needs to be adjusted.
 //
 //		kd *= pow(E, -input* input/(2*c*c));	//the Gaussian curve, which is believed to suit the adapting D control value
-		return;
-		if(IN_RANGE(input,0,0.2))
+//		return;
+		if(!resources->state.isStraightRoad())
 		{
-			kd = 110000;
+			return;
 		}
+//		if(IN_RANGE(input,0,0.2))
+//		{
+//			//straight road
+//			kd = 1000;
+//		}else
+//		{
+//			kd = 0;
+//		}
 	}
 };
+
+template<typename A, typename B>
+Resources* PID<A,B>::resources = 0;
+
+template<typename A, typename B>
+float PID<A,B>::adaptivePFactor  = 1200;
+
+template<typename A, typename B>
+float PID<A,B>::adaptivePBaseFactor = 500;
 
 #endif /* INC_PID_H_ */

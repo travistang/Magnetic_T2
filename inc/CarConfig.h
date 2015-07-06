@@ -9,8 +9,7 @@
 #define INC_CARCONFIG_H_
 #include <stdint.h>
 #include <list>
-#include <TMotor.h>
-#include <PID.h>
+//#include <PID.h>
 #include <Config.h>
 
 using namespace std;
@@ -91,6 +90,7 @@ public:
 	const	 float		c_gearRatio;		//Tire gear/motor gear
 	volatile float		c_sensorSignalInvalidThreshold;
 	volatile float		c_adaptiveKpParam;
+	volatile float		c_adaptiveKpBaseParam;
 
 	float				getStep();
 	int					getSign();

@@ -8,6 +8,9 @@
 #include <Module.h>
 #if VERSION >= 2L
 #define __PRINTNAME(var) #var
+
+Module* modulePtr = 0;
+
 Module::Module(Resources* resources,Type type,bool alternate)
 :type(type),contract(__PRINTNAME(type),0,0){
 	this->resources=resources;
@@ -18,6 +21,11 @@ Module::Module(Resources* resources,Type type,bool alternate)
 	this->alternate=alternate;
 	isTimerSet=false;
 	passFlag=false;
+	if(type == Module::Type::LCD)
+	{
+		modulePtr = this;
+//		Module::joystick(Module::getJostickConfig());
+	}
 }
 
 Module::~Module()
@@ -219,3 +227,24 @@ void Module::buzz(uint16_t interval)
 	resources->buzzer.buzz(interval);
 }
 #endif
+
+
+
+libsc::Joystick::Config Module::getJostickConfig()
+{
+	using namespace libsc;
+	Joystick::Config config;
+	config.id = 0;
+	for(int i = 0; i<5; i++)
+	{
+		config.listener_triggers[i] = Joystick::Config::Trigger::kDown;
+	}
+	config.listeners[4] = [modulePtr](const uint8_t id)
+	{
+		if(modulePtr->type == Module::Type::LCD)
+		{
+			modulePtr->toggleAlternate();
+		}
+	};
+	return config;
+}

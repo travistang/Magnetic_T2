@@ -173,7 +173,7 @@ TLcd &TLcd::operator<<(const char *str)
 TLcd &TLcd::operator<<(const float &f)
 {
 	char buffer[20] = { 0 };
-	size_t n = sprintf(buffer, "%.4f", f);
+	size_t n = sprintf(buffer, "%.3f", f);
 	m_console.WriteBuffer(buffer, n);
 	return *this;
 }
