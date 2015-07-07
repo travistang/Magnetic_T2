@@ -28,9 +28,11 @@ void	TMotor::setSpeed(uint16_t encoderCountS)
 void TMotor::setSpeedWithPID(int32_t encoderCounts)
 {
 	pid.setSp(encoderCounts);
+
 }
 
 void	TMotor::tunePower(int32_t currentEncoderCountS)
 {
 	SetPower(pid.getTunedValue(currentEncoderCountS));
+
 }

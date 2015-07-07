@@ -135,13 +135,12 @@ void Resources::switchListener(Gpi* gpi)
 			break;
 		case LIBSC_SWITCH5:
 			m_instance->config.c_servoPIDControlVariable[0]+=m_instance->config.step*m_instance->config.sign;
+//			m_instance->config.c_motorPIDControlVariable[0]+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH7:
 //			m_instance->config.c_targetEncoderCount += m_instance->config.step* m_instance->config.sign;
-//			m_instance->buzzer.buzz();
-//			m_instance->buzzer.buzz();
-			m_instance->config.c_adaptiveKpParam+=m_instance->config.step*m_instance->config.sign;
+			m_instance->config.c_servoPIDControlVariable[2]+=m_instance->config.step*m_instance->config.sign;
 			m_instance->buzzer.buzz();
 			break;
 		default:

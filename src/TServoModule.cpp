@@ -6,7 +6,9 @@
  */
 
 #include "TServoModule.h"
-#define ABS(x) (x<0)?-x:x
+
+
+
 TServoModule::TServoModule(Resources* resources):
 Module(resources,SERVO),isTurningRightAngle(false),
 servo({0}
@@ -35,14 +37,14 @@ void TServoModule::loopWhileSuspension()
 			resources->config.c_servoPIDControlVariable[1],
 			resources->config.c_servoPIDControlVariable[2]);
 
-//#define RIGHT_ANGLE
+#define RIGHT_ANGLE
 #ifdef RIGHT_ANGLE
 	//TODO important :)
 //	if(resources->state.isStraightRoad())buzz();
-	if((resources->state.getOuterPairAvg())<20&&resources->state.getOuterPairAvg()>-20&&!resources->state.isStraightRoad())
+	if((resources->state.getOuterPairAvg())<12&&resources->state.getOuterPairAvg()>-12&&!resources->state.isStraightRoad())
 	{
 //		buzz();
-		if(resources->state.getOuterPairDif()>0)
+		if(resources->state.getDif()<0)
 		{
 			servo.SetDegree(400);
 		}else

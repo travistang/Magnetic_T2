@@ -146,9 +146,9 @@ int main(){
 //			  ||stateHandlingModule
 			  ||servoModule
 			  ||motorModule
-			  ||encoderModule
+//			  ||encoderModule
 			  ||lcdModule
-			  ||bluetoothModule
+//			  ||bluetoothModule
 //			  ||recordModule
 //			  ||yyModule
 			  ||sensorModule;
@@ -166,7 +166,7 @@ int main(){
 //	~*motorModule;
 //	 *lcdModule>500;
 	 motorRef = motorModule;
-//	 motorModule->toggleAlternate();
+	 motorModule->toggleAlternate();
 	 bluetoothModule->toggleAlternate();
 //	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 //	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
@@ -184,10 +184,6 @@ int main(){
 		ptr->run();
 		ptr=ptr->getNext();
 		if(ptr==0)break;
-
-//		int len = sprintf((char*)buf,"%g\n",0.5);
-//		bt.SendBuffer(buf,len);
-//		System::DelayMs(30);
 	}
 	return 0;
 }

@@ -27,8 +27,8 @@ void TLcdModule::task() {
 			<< "P:"<< (float)resources->config.c_servoPIDControlVariable[0]<<TLcd::endl
 			<< "a:"<< (float)resources->config.c_adaptiveKpParam<<TLcd::endl
 			<< "b:" << (float)resources->config.c_adaptiveKpBaseParam<<TLcd::endl
-			<< " Step:"<< resources->config.getStep()*resources->config.getSign() << TLcd::endl;
-		//			<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl
+			<< " Step:"<< resources->config.getStep()*resources->config.getSign() << TLcd::endl
+			<< "d: "<< (float)resources->config.c_servoPIDControlVariable[2]<< TLcd::endl;
 }
 void TLcdModule::loopWhileSuspension()
 {
@@ -53,13 +53,14 @@ void TLcdModule::alternateTask()
 
 //	lcd.onDraw();
 	lcd.setRow(0)
-			<< "Motor PID:"<<TLcd::endl
 			<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl
 			<< "1: "<< (float)resources->state.magneticSensorReading[1]<< TLcd::endl
 			<< "2: "<< (float)resources->state.magneticSensorReading[2]<< TLcd::endl
 			<< "3: "<< (float)resources->state.magneticSensorReading[3]<< TLcd::endl
 			<< "4: "<< (float)resources->state.magneticSensorReading[4]<< TLcd::endl
 			<< "5: "<< (float)resources->state.magneticSensorReading[5]<< TLcd::endl
-			<< "p:"<<(float)resources->config.c_servoPIDControlVariable[0]<< TLcd::endl
+			<< "MP:"<<(float)resources->config.c_motorPIDControlVariable[0]<< TLcd::endl
+			<< " St:"<< resources->config.getStep()*resources->config.getSign() << TLcd::endl
+			<<TLcd::endl
 			<<"Enc.:"<< resources->state.encoderCount<< TLcd::endl;
 }

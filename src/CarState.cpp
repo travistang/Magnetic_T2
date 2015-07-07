@@ -207,5 +207,5 @@ bool CarState::isStraightRoad()
 //	float frontDif = getFrontPairDif();
 	float frontDif = abs(getFrontPairDif());
 	float dif = abs(getDif());
-	return (abs(frontDif-dif)<0.20f);
+	return (abs(frontDif-dif)<0.15f);
 }

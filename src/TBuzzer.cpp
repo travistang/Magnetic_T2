@@ -22,6 +22,7 @@ void TBuzzer::buzz(uint16_t interval)
 {
 	if(interval<=0)return;
 //	uint16_t time=libsc::System::Time();
-	gpo.Set(true);
+	for(int i = 0; i<500 ; i++)
+		gpo.Set(true);
 	gpo.Set(false);
 }

@@ -12,6 +12,7 @@
 #include "TBluetooth.h"
 #include "TOutsourcer.h"
 #include <cstring>
+#include <inttypes.h>
 using namespace LIBSC_NS;
 using namespace LIBBASE_NS;
 class TBluetoothModule: public Module{

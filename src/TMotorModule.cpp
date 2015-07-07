@@ -5,6 +5,10 @@
  *      Author: Travis
  */
 #include <TMotorModule.h>
+float abs(float const & x)
+{
+    return ( x<0 ) ? -x : x;
+}
 	libsc::DirMotor::DirMotor::Config getMotorConfig()
 	{
 		libsc::DirMotor::DirMotor::Config config;
@@ -88,10 +92,15 @@ void TMotorModule::task()
 //	motor.SetPower(resources->config.c_motorPower/dif*param);
 	motor.setSpeedWithPID(resources->config.c_targetEncoderCount);
 	motor.tunePower(resources->state.encoderCount);
+	resources->config.c_motorPower = motor.GetPower();
+	//protection
 
 }
+
 
 void TMotorModule::alternateTask()
 {
 	motor.SetPower(resources->config.c_motorPower);
+//	libsc::System::DelayMs(2);
+
 }

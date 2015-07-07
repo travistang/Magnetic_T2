@@ -80,9 +80,10 @@ void TBluetoothModule::alternateTask()
 //			resources->state.magneticSensorReading[3],
 //			resources->state.magneticSensorReading[4],
 //			resources->state.magneticSensorReading[5]);
-	int len=sprintf((char*)buffer,"%d %d\n",
+	int len=sprintf((char*)buffer,"%ld %ld %d\n",
 				resources->config.c_targetEncoderCount,
-				resources->state.encoderCount);
+				resources->state.encoderCount,
+				resources->config.c_motorPower);
 
 //	int len = sprintf((char*)buffer,"%g %g\n",resources->state.getDif(),resources->state.getFrontPairDif());
 //	int len=sprintf((char*)buffer,"%ld %f\n",resources->state.encoderCount,resources->state.getDif());

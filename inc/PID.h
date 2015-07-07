@@ -290,18 +290,10 @@ private:
 //
 //		kd *= pow(E, -input* input/(2*c*c));	//the Gaussian curve, which is believed to suit the adapting D control value
 //		return;
-		if(!resources->state.isStraightRoad())
+		if(resources->state.isStraightRoad())
 		{
-			return;
+			kd += 1000;
 		}
-//		if(IN_RANGE(input,0,0.2))
-//		{
-//			//straight road
-//			kd = 1000;
-//		}else
-//		{
-//			kd = 0;
-//		}
 	}
 };
 
