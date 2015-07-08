@@ -19,15 +19,20 @@ void YuanYangModule::task()
 	{
 		resources->state.carDistance = sonic.distance();
 		uint16_t dist = resources->state.carDistance;
-		if(dist<20)
+		if(dist<260)
 		{
 			buzz();
+			resources->config.c_motorPower = 0;
 		}
 
 	}else
 	{
 		resources->state.carDistance = -1;
 	}
+}
+
+void YuanYangModule::alternateTask(){
+
 }
 
 //void YuanYangModule::checkVoltage()

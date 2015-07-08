@@ -95,7 +95,8 @@ CarConfig::CarConfig() :
 	//b
 	c_adaptiveKpBaseParam = 845;
 
-	c_targetEncoderCount = 15000;
+	c_encoderratio = 54000/200;
+	c_targetEncoderCount = c_motorPower*c_encoderratio;
 
 	c_motorShouldSuspend = true;
 	c_servoShouldSuspend = false;
