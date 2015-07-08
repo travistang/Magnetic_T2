@@ -126,7 +126,7 @@ int main(){
 	/*
 	 * Initialization and module declaration
 	 */
-	System::Init();
+System::Init();
 
 	Resources resources;
 	r = resources.getResRef();
@@ -146,9 +146,9 @@ int main(){
 //			  ||stateHandlingModule
 			  ||servoModule
 			  ||motorModule
-//			  ||encoderModule
+			  ||encoderModule
 			  ||lcdModule
-//			  ||bluetoothModule
+			  ||bluetoothModule
 //			  ||recordModule
 //			  ||yyModule
 			  ||sensorModule;

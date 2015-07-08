@@ -27,6 +27,16 @@ private:
 	TMotor		motor;
 	static libbase::k60::Gpi::Config getGpiConfig();
 	static void remoteListener(libbase::k60::Gpi* gpi);
+
+	int count;
+	float ee, le;
+	float ss;
+	float rr;
+	float pp;
+	float dd;
+	float ii;
+	TimerInt lt, vt;
+
 };
 #endif
 #endif /* INC_TMOTORMODULE_H_ */

@@ -54,12 +54,12 @@ CarConfig::CarConfig() :
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
 	//TODO important :)
-	c_servoPIDControlVariable[0] = 750;
+	c_servoPIDControlVariable[0] = 750;   //750
 	c_servoPIDControlVariable[1] = 0;
 	c_servoPIDControlVariable[2] = 1000;
 	c_servoPIDSp = 900;
 	//TODO important :)
-	c_motorPower = 120;
+	c_motorPower = 90;		//120
 
 	c_motorRotateClockwise = 0;
 
@@ -70,7 +70,7 @@ CarConfig::CarConfig() :
 //	c_magneticSensorTriggerThreshold= 	3;		//for [0,100]
 
 	c_motorPIDEnabled = 0;
-	c_motorPIDControlVariable[0] = -0.05;
+	c_motorPIDControlVariable[0] = 2;			//-0.006
 	c_motorPIDControlVariable[1] = 0;
 	c_motorPIDControlVariable[2] = 0;
 	c_motorPIDSp = 0;
@@ -95,7 +95,7 @@ CarConfig::CarConfig() :
 	//b
 	c_adaptiveKpBaseParam = 845;
 
-	c_targetEncoderCount = 26000;
+	c_targetEncoderCount = 15000;
 
 	c_motorShouldSuspend = true;
 	c_servoShouldSuspend = false;

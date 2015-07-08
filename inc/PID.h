@@ -90,14 +90,14 @@ public:
 											//the error will be positive. so that the proportional
 											//controller will compensate the error by adding the differences
 						B result = defaultResult;
-						if(useAutomat)
-						{
-							for(int i = 0; i< m_automatList.size();i++)
-							{
-									m_automatList[i](error,m_kp,m_ki,m_kd);
-														// The automats are supposed to alter the control variables and thus the tuned value.
-							}
-						}
+//						if(useAutomat)
+//						{
+//							for(int i = 0; i< m_automatList.size();i++)
+//							{
+//									m_automatList[i](error,m_kp,m_ki,m_kd);
+//														// The automats are supposed to alter the control variables and thus the tuned value.
+//							}
+//						}
 						/*
 						 * main procedure: calculate tuned result
 						 */
