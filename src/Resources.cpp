@@ -112,6 +112,8 @@ void Resources::switchListener(Gpi* gpi)
 {
 	switch(gpi->GetPin()->GetName())
 	{
+#define TUNING 0 //0: servo 1: motor
+
 		case LIBSC_SWITCH6:
 			m_instance->config.step/=10;
 			m_instance->buzzer.buzz();
@@ -125,23 +127,36 @@ void Resources::switchListener(Gpi* gpi)
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH3:
+#if TUNING == 0
 			m_instance->config.c_adaptiveKpBaseParam+=m_instance->config.step*m_instance->config.sign;
+#elif TUNING == 1
+			m_instance->config.c_motorPIDControlVariable[2] += m_instance->config.step*m_instance->config.sign;
+#endif
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH4:
 			//should have broken:(
+#if TUNING == 0
 			m_instance->config.c_adaptiveKpParam+=m_instance->config.step*m_instance->config.sign;
+#elif TUNING == 1
+			m_instance->config.c_motorPIDControlVariable[1] += m_instance->config.step*m_instance->config.sign;
+#endif
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH5:
+#if TUNING == 0
 			m_instance->config.c_servoPIDControlVariable[0]+=m_instance->config.step*m_instance->config.sign;
-//			m_instance->config.c_motorPIDControlVariable[0]+=m_instance->config.step*m_instance->config.sign;
+#elif TUNING == 1
+			m_instance->config.c_motorPIDControlVariable[0] += m_instance->config.step*m_instance->config.sign;
+#endif
 			m_instance->buzzer.buzz();
 			break;
 		case LIBSC_SWITCH7:
-//			m_instance->config.c_targetEncoderCount += m_instance->config.step* m_instance->config.sign;
-//			m_instance->config.c_servoPIDControlVariable[2]+=m_instance->config.step*m_instance->config.sign;
+#if TUNING == 0
 			m_instance->config.c_adaptiveKpParam+=m_instance->config.step*m_instance->config.sign;
+#elif TUNING == 1
+			m_instance->config.c_targetEncoderCount += m_instance->config.step* m_instance->config.sign;
+#endif
 			m_instance->buzzer.buzz();
 			break;
 		default:
