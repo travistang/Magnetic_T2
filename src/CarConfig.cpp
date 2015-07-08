@@ -54,12 +54,12 @@ CarConfig::CarConfig() :
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
 	//TODO important :)
-	c_servoPIDControlVariable[0] = 750;   //750
+	c_servoPIDControlVariable[0] = 750;
 	c_servoPIDControlVariable[1] = 0;
 	c_servoPIDControlVariable[2] = 1000;
 	c_servoPIDSp = 900;
 	//TODO important :)
-	c_motorPower = 90;		//120
+	c_motorPower = 120;
 
 	c_motorRotateClockwise = 0;
 
@@ -95,8 +95,7 @@ CarConfig::CarConfig() :
 	//b
 	c_adaptiveKpBaseParam = 845;
 
-	c_encoderratio = 54000/200;
-	c_targetEncoderCount = c_motorPower*c_encoderratio;
+	c_targetEncoderCount = 26000;
 
 	c_motorShouldSuspend = true;
 	c_servoShouldSuspend = false;

@@ -86,7 +86,6 @@ public:
 	const	 float		c_batteryNormalColor;
 	const	 float		c_batteryHighColor;
 	const	 float		c_wheelDiameter;	//in m
-	const    float      c_encoderratio;
 	const	 int		c_encoderCountPerRevolution;
 	const	 float		c_gearRatio;		//Tire gear/motor gear
 
