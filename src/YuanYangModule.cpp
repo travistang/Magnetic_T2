@@ -15,15 +15,11 @@ YuanYangModule::YuanYangModule(Resources* r) : Module(r,SONIC)
 
 void YuanYangModule::task()
 {
+
+//	int initPower = 120;
 	if(sonic.is_valid())
 	{
 		resources->state.carDistance = sonic.distance();
-		uint16_t dist = resources->state.carDistance;
-		if(dist<260)
-		{
-			buzz();
-			resources->config.c_motorPower = 0;
-		}
 
 	}else
 	{

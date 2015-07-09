@@ -20,8 +20,9 @@ void TLcdModule::task() {
 	lcd.setRow(0)
 //			<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl
 			<< "dif: "<< (float)resources->state.getDif()<< TLcd::endl
-//			<< "Car dist:"<<resources->state.carDistance<< TLcd::endl
+			<< "Car dist:"<<resources->state.carDistance<< TLcd::endl
 			<< "FrontDif:"<<(float)resources->state.getFrontPairDif()<< TLcd::endl
+//			<< "Power:"<<(float)resources->config.c_motorPower<<TLcd::endl
 			<< "OuterAvg: "<< (float)resources->state.getOuterPairAvg()<< TLcd::endl
 			<< "OutDif: "<<(float) resources->state.getOuterPairDif()<< TLcd::endl
 			<< "P:"<< (float)resources->config.c_servoPIDControlVariable[0]<<TLcd::endl

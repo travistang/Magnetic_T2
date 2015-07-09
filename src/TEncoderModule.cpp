@@ -30,9 +30,9 @@ void TEncoderModule::task()
 	TimerInt dt=libsc::System::Time()-timer;
 	encoder.updateInterval=dt;
 	resources->state.s_timeInterval = dt;
-	resources->state.encoderCount
-		=-encoder.GetCount()/(float)dt*1000;
-//	resources->state.encoderCount=encoder.GetCount();
+//	resources->state.encoderCount
+//		=-encoder.GetCount()/(float)dt*1000;
+	resources->state.encoderCount=encoder.GetCount();
 //	buzz();
 	timer=libsc::System::Time();
 }

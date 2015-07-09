@@ -70,7 +70,7 @@ CarConfig::CarConfig() :
 //	c_magneticSensorTriggerThreshold= 	3;		//for [0,100]
 
 	c_motorPIDEnabled = 0;
-	c_motorPIDControlVariable[0] = 2;			//-0.006
+	c_motorPIDControlVariable[0] = 2.5 ;
 	c_motorPIDControlVariable[1] = 0;
 	c_motorPIDControlVariable[2] = 0;
 	c_motorPIDSp = 0;

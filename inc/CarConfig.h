@@ -44,7 +44,7 @@ public:
 	const	 uint16_t	c_servoCentralAngle;
 	volatile float		c_servoPIDControlVariable[3];
 	volatile float      c_servoPIDSp;
-	volatile uint16_t 	c_motorPower;
+	volatile int16_t 	c_motorPower;
 	volatile bool 	  	c_motorRotateClockwise;
 	volatile int32_t	c_targetEncoderCount;
 
