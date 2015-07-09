@@ -112,7 +112,7 @@ void Resources::switchListener(Gpi* gpi)
 {
 	switch(gpi->GetPin()->GetName())
 	{
-#define TUNING 1 //0: servo 1: motor
+#define TUNING 0 //0: servo 1: motor
 
 		case LIBSC_SWITCH6:
 			m_instance->config.step/=10;
@@ -169,10 +169,12 @@ void Resources::buttonListener(Gpi* gpi)
 	switch(gpi->GetPin()->GetName())
 	{
 		case LIBSC_BUTTON0:
-			m_instance->config.c_motorPower+=100;
+			//m_instance->config.c_motorPower+=100;
+			(m_instance->config.c_servoShouldSuspend) = !(m_instance->config.c_servoShouldSuspend);
 			break;
 		case LIBSC_BUTTON1:
-			m_instance->config.c_motorPower -= 100;
+			//m_instance->config.c_motorPower -= 100;
+			(m_instance->config.c_motorShouldSuspend) = !(m_instance->config.c_motorShouldSuspend);
 			break;
 		default:
 			break;
@@ -200,7 +202,7 @@ libsc::Joystick::Config Resources::getJoystickConfig()
 
 	config.listeners[0] = [this](const uint16_t a)
 		{
-			(this->config.c_servoShouldSuspend) = !(this->config.c_servoShouldSuspend);
+			//(this->config.c_servoShouldSuspend) = !(this->config.c_servoShouldSuspend);
 		};
 	config.listeners[1] = [this](const uint16_t a)
 		{
@@ -208,7 +210,7 @@ libsc::Joystick::Config Resources::getJoystickConfig()
 		};
 	config.listeners[4] = [this](const uint16_t a)
 		{
-			(this->config.c_motorShouldSuspend) = !(this->config.c_motorShouldSuspend);
+			//(this->config.c_motorShouldSuspend) = !(this->config.c_motorShouldSuspend);
 		};
 
 	return config;
