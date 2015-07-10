@@ -112,7 +112,7 @@ void Resources::switchListener(Gpi* gpi)
 {
 	switch(gpi->GetPin()->GetName())
 	{
-#define TUNING 1 //0: servo 1: motor
+#define TUNING 0 //0: servo 1: motor
 
 		case LIBSC_SWITCH6:
 			m_instance->config.step/=10;

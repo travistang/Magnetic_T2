@@ -61,8 +61,6 @@ public:
 	volatile float 	  	c_motorPIDControlVariable[3];
 	volatile float 	  	c_motorPIDSp;
 	volatile bool		c_motorPIDUseAutomat;
-	volatile uint16_t	c_motorPowerLowerBound;
-	volatile uint16_t	c_motorPowerUpperBound;
 
 	const	 int		c_bluetoothCount;
 	volatile uint8_t	c_bluetoothRXThreshold;

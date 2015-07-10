@@ -10,7 +10,6 @@
 #include <TMotor.h>
 #include <Module.h>
 #include <libbase/k60/gpio.h>
-#include "MotorPID.h"
 #if VERSION >= 2L
 class TMotorModule: public Module {
 public:
@@ -37,7 +36,6 @@ private:
 	float dd;
 	float ii;
 	TimerInt lt, vt;
-	MotorPID pid;
 
 };
 #endif

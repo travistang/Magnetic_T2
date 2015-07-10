@@ -24,16 +24,9 @@ void TLcdModule::task() {
 			<< "FrontDif:"<<(float)resources->state.getFrontPairDif()<< TLcd::endl
 			<< "OuterAvg: "<< (float)resources->state.getOuterPairAvg()<< TLcd::endl
 			<< "OutDif: "<<(float) resources->state.getOuterPairDif()<< TLcd::endl
-#define TUNING 1
-#if TUNING == 0 //0: servo 1: motor
 			<< "P:"<< (float)resources->config.c_servoPIDControlVariable[0]<<TLcd::endl
 			<< "a:"<< (float)resources->config.c_adaptiveKpParam<<TLcd::endl
 			<< "b:" << (float)resources->config.c_adaptiveKpBaseParam<<TLcd::endl
-#elif TUNING ==1
-			<< "P:"<< (float)resources->config.c_motorPIDControlVariable[0]<<TLcd::endl
-			<< "I:"<< (float)resources->config.c_motorPIDControlVariable[1]<<TLcd::endl
-			<< "D:" << (float)resources->config.c_motorPIDControlVariable[2]<<TLcd::endl
-#endif
 			<< " Step:"<< resources->config.getStep()*resources->config.getSign() << TLcd::endl
 			<< "d: "<< (float)resources->config.c_servoPIDControlVariable[2]<< TLcd::endl;
 }
