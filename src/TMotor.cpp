@@ -36,3 +36,5 @@ void	TMotor::tunePower(int32_t currentEncoderCountS)
 	SetPower(pid.getTunedValue(currentEncoderCountS));
 
 }
+
+

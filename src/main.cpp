@@ -133,46 +133,41 @@ System::Init();
 	TimerInt time=libsc::System::Time();
 
 //	TLedModule* 				   ledModule=new TLedModule(r);
-	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
-	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
-//	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
-	TServoModule* 	  			 servoModule=new TServoModule(r);
-	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
-	TMotorModule* 	  			 motorModule=new TMotorModule(r);
-	TLcdModule* 				   lcdModule=new TLcdModule(r);
+//	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
+//	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
+////	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
+//	TServoModule* 	  			 servoModule=new TServoModule(r);
+//	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
+//	TMotorModule* 	  			 motorModule=new TMotorModule(r);
+//	TLcdModule* 				   lcdModule=new TLcdModule(r);
 //	YuanYangModule*					yyModule=new YuanYangModule(r);
-
-	*sensorModule
+	TMagneticSensorModule sensorModule(r);
+	TBluetoothModule bluetoothModule(r);
+	TServoModule servoModule(r);
+	TEncoderModule encoderModule(r);
+	TMotorModule motorModule(r);
+	TLcdModule lcdModule(r);
+	sensorModule
 //			  ||stateHandlingModule
-			  ||servoModule
-			  ||motorModule
-			  ||encoderModule
-			  ||lcdModule
-			  ||bluetoothModule
+			  ||&servoModule
+			  ||&motorModule
+			  ||&encoderModule
+			  ||&lcdModule
+			  ||&bluetoothModule
 //			  ||recordModule
 //			  ||yyModule
-			  ||sensorModule;
+			  ||&sensorModule;
 
 
 	/*
 	 * Module configuration
 	 */
-//	lcdRef=lcdModule;
-//	lcdModule->toggleAlternate();
-//	recRef=recordModule;
-//	~*stateHandlingModule;
-	~*sensorModule;
-	~*servoModule;
-//	~*motorModule;
-//	 *lcdModule>500;
-	 motorRef = motorModule;
-	 motorModule->toggleAlternate();
-	 bluetoothModule->toggleAlternate();
-//	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
-//	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
-	 Module* ptr=sensorModule;
-//	 recordModule->startRecordingCoordinates();
-//	 Resources::m_instance = &resources;
+	~sensorModule;
+	~servoModule;
+	 motorRef = &motorModule;
+	 motorModule.toggleAlternate();
+	 bluetoothModule.toggleAlternate();
+	 Module* ptr=&sensorModule;
 	/*
 	 * Misc. initialization
 	 */
