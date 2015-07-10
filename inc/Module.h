@@ -25,7 +25,7 @@ public:
 			STATE_HANDLER,
 			NULL_MODULE,
 			RECORD,
-			SONIC
+			SONIC,
 		};
 	typedef uint16_t TimerInt;
 	Module(Resources* resources,Type type,bool alternate=false);

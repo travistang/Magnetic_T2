@@ -21,6 +21,11 @@
 using namespace LIBBASE_NS;
 using namespace libsc;
 
+namespace libbase
+{
+namespace k60
+{
+
 LIBBASE_NS::Mcg::Config Mcg::GetMcgConfig(){
 	LIBBASE_NS::Mcg::Config config;
 	config.external_oscillator_khz=50000;
@@ -28,6 +33,10 @@ LIBBASE_NS::Mcg::Config Mcg::GetMcgConfig(){
 //	config.bus_clock_khz = 24000;
 	return config;
 }
+
+}
+}
+
 Resources* r;
 TLcdModule* lcdRef;
 TRecordModule* recRef;
@@ -51,8 +60,8 @@ bool listener(const std::vector<Byte> bytes )
 				{
 					case ERROR:
 						return false;
-					case LCD_TOGGLE_PAGE:
-						lcdRef->toggleAlternate();
+//					case LCD_TOGGLE_PAGE:
+//						lcdRef->toggleAlternate();
 						break;
 					case LCD_SUSPEND:
 						break;
@@ -113,8 +122,8 @@ bool listener(const std::vector<Byte> bytes )
 		case 'f':
 			r->config.c_motorPower-=100;
 			break;
-		case 'n':
-			lcdRef->toggleAlternate();
+//		case 'n':
+//			lcdRef->toggleAlternate();
 			break;
 		case 'm':
 			motorRef->suspend();
@@ -140,17 +149,17 @@ System::Init();
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
 	TMotorModule* 	  			 motorModule=new TMotorModule(r);
 	TLcdModule* 				   lcdModule=new TLcdModule(r);
-//	YuanYangModule*					yyModule=new YuanYangModule(r);
+	YuanYangModule*					yyModule=new YuanYangModule(r);
 
 	*sensorModule
 //			  ||stateHandlingModule
 			  ||servoModule
-			  ||motorModule
 			  ||encoderModule
-			  ||lcdModule
 			  ||bluetoothModule
+			  ||motorModule
+			  ||lcdModule
+			  ||yyModule
 //			  ||recordModule
-//			  ||yyModule
 			  ||sensorModule;
 
 
@@ -170,7 +179,7 @@ System::Init();
 	 bluetoothModule->toggleAlternate();
 //	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 //	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
-	 Module* ptr=sensorModule;
+	 Module* ptr=encoderModule;
 //	 recordModule->startRecordingCoordinates();
 //	 Resources::m_instance = &resources;
 	/*

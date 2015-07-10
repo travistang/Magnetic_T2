@@ -28,9 +28,13 @@ private:
 	static libbase::k60::Gpi::Config getGpiConfig();
 	static void remoteListener(libbase::k60::Gpi* gpi);
 
+	int distancesp;
+	int16_t dist;
+	float param;
+
 	int count;
+	int spp;
 	float ee, le;
-	float ss;
 	float rr;
 	float pp;
 	float dd;
