@@ -37,7 +37,7 @@ TMotorModule::TMotorModule(Resources* resources)
 :Module(resources,MOTOR),motor(getMotorConfig()),gpi(getGpiConfig())
 {
 	libsc::System::Init();
-	distancesp = 300;
+	distancesp = 260;
 	dist = 0;
 	param  = 1;
 
@@ -130,7 +130,7 @@ void TMotorModule::alternateTask()
 
 
 	dist = resources->state.carDistance;
-	if(dist <= distancesp - 50 && dist >0)
+	if(dist < distancesp - 50 && dist >0)
 			{
 				//			if(dist <= 50){
 				//				buzz();
@@ -146,12 +146,12 @@ void TMotorModule::alternateTask()
 				//			}
 				buzz();
 				resources->config.c_motorPower = 0;
-				param = 1.2;
+				param = 1;
 			}
-	else if((dist > distancesp - 50) && (dist < distancesp + 50)){
+	else if((dist > distancesp - 10) && (dist < distancesp + 10)){
 				resources->config.c_motorPower = 120;
 			}
-	else if(dist >= distancesp + 50){
+	else if((dist < 500)&&(dist >= distancesp + 50)){
 				param = 0.2;
 				resources->config.c_motorPower = 120 + param*(abs(distancesp - dist));
 			}
@@ -159,42 +159,42 @@ void TMotorModule::alternateTask()
 				resources->config.c_motorPower = 120;
 
 
-	resources->config.c_targetEncoderCount = (resources->config.c_motorPower/200.0f)*40000;
-	if(resources->config.c_targetEncoderCount >= 40000)
-		resources->config.c_targetEncoderCount = 40000;
-	if(resources->config.c_targetEncoderCount <= -40000)
-		resources->config.c_targetEncoderCount = -40000;
-	ee = resources->config.c_targetEncoderCount - resources->state.encoderCount;
-//	if(ABS(resources->config.c_targetEncoderCount) <= 1000) pp = ee*0.5;
-//	else
-	pp = ee*resources->config.c_motorPIDControlVariable[0]*param;
-//	ii = (ee + le)*((float)(libsc::System::Time() - lt)/2000.0f)*0.00001;
-//	dd = (ee - le)/((float)(libsc::System::Time() - lt)/1000.0f)*0.0005;
-	lt = libsc::System::Time();
-	le = ee;
-	rr = resources->config.c_motorPower + (pp+dd)/40000*200;
-//	rr = rr*8.01/7.60;
-
-	if(rr >= 300)
-		rr = 300;
-	if(rr <= -250)
-		rr = -250;
-	if(rr < 0 && (resources->config.c_targetEncoderCount >= 1000))
-		rr = 0;
-	if(rr > 0 && (resources->config.c_targetEncoderCount <= -1000))
-		rr = 0;
-	if(resources->state.encoderCount < -500)
-		rr = 0;
-	if(rr < 0 && (resources->config.c_targetEncoderCount <= 1000)){
-		rr = ABS(rr);
-		motor.SetPower(0);
-		motor.SetClockwise(false);
-		motor.SetPower(rr);
-	}
-	else{
-		motor.SetClockwise(true);
-		motor.SetPower(rr);
-//		motor.SetPower(150);
-	}
+//	resources->config.c_targetEncoderCount = (resources->config.c_motorPower/200.0f)*40000;
+//	if(resources->config.c_targetEncoderCount >= 40000)
+//		resources->config.c_targetEncoderCount = 40000;
+//	if(resources->config.c_targetEncoderCount <= -40000)
+//		resources->config.c_targetEncoderCount = -40000;
+//	ee = resources->config.c_targetEncoderCount - resources->state.encoderCount;
+////	if(ABS(resources->config.c_targetEncoderCount) <= 1000) pp = ee*0.5;
+////	else
+//	pp = ee*resources->config.c_motorPIDControlVariable[0]*param;
+////	ii = (ee + le)*((float)(libsc::System::Time() - lt)/2000.0f)*0.00001;
+////	dd = (ee - le)/((float)(libsc::System::Time() - lt)/1000.0f)*0.0005;
+//	lt = libsc::System::Time();
+//	le = ee;
+//	rr = resources->config.c_motorPower + (pp+dd)/40000*200;
+//	//rr = rr*8.01/7.60;
+//
+//	if(rr >= 300)
+//		rr = 300;
+//	if(rr <= -250)
+//		rr = -250;
+//	if(rr < 0 && (resources->config.c_targetEncoderCount >= 1000))
+//		rr = 0;
+//	if(rr > 0 && (resources->config.c_targetEncoderCount <= -1000))
+//		rr = 0;
+//	if(resources->state.encoderCount < -500)
+//		rr = 0;
+//	if(rr < 0 && (resources->config.c_targetEncoderCount <= 1000)){
+//		rr = ABS(rr);
+//		motor.SetPower(0);
+//		motor.SetClockwise(false);
+//		motor.SetPower((int)rr);
+//	}
+//	else{
+//		motor.SetClockwise(true);
+//		motor.SetPower((int)rr);
+		motor.SetPower(120);
+//	}
 
 }

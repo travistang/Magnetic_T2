@@ -38,7 +38,7 @@ LIBBASE_NS::Mcg::Config Mcg::GetMcgConfig(){
 }
 
 Resources* r;
-TLcdModule* lcdRef;
+//TLcdModule* lcdRef;
 TRecordModule* recRef;
 TMotorModule* motorRef;
 typedef uint16_t TimerInt;
@@ -142,38 +142,39 @@ System::Init();
 	TimerInt time=libsc::System::Time();
 
 //	TLedModule* 				   ledModule=new TLedModule(r);
-	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
+//	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
 	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
 //	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
-	TServoModule* 	  			 servoModule=new TServoModule(r);
+//	TServoModule* 	  			 servoModule=new TServoModule(r);
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
 	TMotorModule* 	  			 motorModule=new TMotorModule(r);
-	TLcdModule* 				   lcdModule=new TLcdModule(r);
+//	TLcdModule* 				   lcdModule=new TLcdModule(r);
 	YuanYangModule*					yyModule=new YuanYangModule(r);
 
-	*sensorModule
+//	*sensorModule
 //			  ||stateHandlingModule
-			  ||servoModule
-			  ||encoderModule
+//			  ||servoModule
+			  *encoderModule
 			  ||bluetoothModule
 			  ||motorModule
-			  ||lcdModule
+//			  ||lcdModule
 			  ||yyModule
+			  ||encoderModule;
 //			  ||recordModule
-			  ||sensorModule;
+//			  ||sensorModule;
 
 
 	/*
 	 * Module configuration
 	 */
-//	lcdRef=lcdModule;
-//	lcdModule->toggleAlternate();
-//	recRef=recordModule;
-//	~*stateHandlingModule;
-	~*sensorModule;
-	~*servoModule;
-//	~*motorModule;
-//	 *lcdModule>500;
+////	lcdRef=lcdModule;
+////	lcdModule->toggleAlternate();
+////	recRef=recordModule;
+////	~*stateHandlingModule;
+//	~*sensorModule;
+//	~*servoModule;
+////	~*motorModule;
+////	 *lcdModule>500;
 	 motorRef = motorModule;
 	 motorModule->toggleAlternate();
 	 bluetoothModule->toggleAlternate();
