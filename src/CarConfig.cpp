@@ -61,7 +61,7 @@ CarConfig::CarConfig() :
 	//TODO important :)
 	c_motorPower = 120;
 
-	c_motorRotateClockwise = 0;
+	c_motorRotateClockwise = 1;
 
 	c_magneticSensorLowerBound = 0;
 	c_magneticSensorUpperBound = 100;

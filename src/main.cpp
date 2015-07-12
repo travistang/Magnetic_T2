@@ -142,26 +142,26 @@ System::Init();
 	TimerInt time=libsc::System::Time();
 
 //	TLedModule* 				   ledModule=new TLedModule(r);
-//	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
+	TMagneticSensorModule* 		sensorModule=new TMagneticSensorModule(r);
 	TBluetoothModule* 		 bluetoothModule=new TBluetoothModule(r,listener);
 //	TStateHandlerModule* stateHandlingModule=new TStateHandlerModule(r);
 //	TServoModule* 	  			 servoModule=new TServoModule(r);
 	TEncoderModule* 		   encoderModule=new TEncoderModule(r);
 	TMotorModule* 	  			 motorModule=new TMotorModule(r);
-//	TLcdModule* 				   lcdModule=new TLcdModule(r);
+	TLcdModule* 				   lcdModule=new TLcdModule(r);
 	YuanYangModule*					yyModule=new YuanYangModule(r);
 
-//	*sensorModule
+	*sensorModule
 //			  ||stateHandlingModule
 //			  ||servoModule
-			  *encoderModule
+			  ||encoderModule
 			  ||bluetoothModule
 			  ||motorModule
-//			  ||lcdModule
+			  ||lcdModule
 			  ||yyModule
-			  ||encoderModule;
+			  ||encoderModule
 //			  ||recordModule
-//			  ||sensorModule;
+			  ||sensorModule;
 
 
 	/*
@@ -177,6 +177,7 @@ System::Init();
 ////	 *lcdModule>500;
 	 motorRef = motorModule;
 	 motorModule->toggleAlternate();
+	 motorModule->suspend();
 	 bluetoothModule->toggleAlternate();
 //	 std::function<uint16_t(Resources*)> servoFetcher=[](Resources* r){return r->config.c_servoAngle;};
 //	 std::function <float(Resources*)> mg1Fetcher=[](Resources* r){return r->state.magneticSensorReading[0];};
