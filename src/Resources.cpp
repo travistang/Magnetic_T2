@@ -24,6 +24,12 @@ Resources::Resources()
 #if VERSION >=2L
 	state.magneticSensorReading=
 			new float[config.c_magneticSensorCount];
+	state.magneticSensorReadingAverage =
+			new float[config.c_magneticSensorCount];
+	for(int i =0; i<config.c_magneticSensorCount; i++)
+	{
+		state.magneticSensorReadingAverage[i] = 0;
+	}
 #endif
 	m_instance = this;
 //	lcdRef = 0;
@@ -112,7 +118,7 @@ void Resources::switchListener(Gpi* gpi)
 {
 	switch(gpi->GetPin()->GetName())
 	{
-#define TUNING 1 //0: servo 1: motor
+#define TUNING 0 //0: servo 1: motor
 
 		case LIBSC_SWITCH6:
 			m_instance->config.step/=10;
@@ -169,10 +175,10 @@ void Resources::buttonListener(Gpi* gpi)
 	switch(gpi->GetPin()->GetName())
 	{
 		case LIBSC_BUTTON0:
-			m_instance->config.c_motorPower+=100;
+			m_instance->config.c_targetEncoderCount += 1000;
 			break;
 		case LIBSC_BUTTON1:
-			m_instance->config.c_motorPower -= 100;
+			m_instance->config.c_targetEncoderCount -= 1000;
 			break;
 		default:
 			break;
@@ -201,14 +207,27 @@ libsc::Joystick::Config Resources::getJoystickConfig()
 	config.listeners[0] = [this](const uint16_t a)
 		{
 			(this->config.c_servoShouldSuspend) = !(this->config.c_servoShouldSuspend);
+			buzzer.buzz();
 		};
 	config.listeners[1] = [this](const uint16_t a)
 		{
 			(this->config.c_lcdShouldToggle) = !(this->config.c_lcdShouldToggle);
+			buzzer.buzz();
 		};
 	config.listeners[4] = [this](const uint16_t a)
 		{
 			(this->config.c_motorShouldSuspend) = !(this->config.c_motorShouldSuspend);
+			buzzer.buzz(3);
+		};
+	config.listeners[3] = [this](const uint16_t a)
+		{
+			(this->config.c_isFetchingReadingAverage) = true;
+			buzzer.buzz(5);
+		};
+	config.listeners[2] = [this](const uint16_t a)
+		{
+			(this->config.c_lcdShouldSuspend) = !(this->config.c_lcdShouldSuspend);
+			buzzer.buzz();
 		};
 
 	return config;

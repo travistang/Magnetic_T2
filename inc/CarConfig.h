@@ -101,6 +101,10 @@ public:
 	volatile bool		c_servoShouldSuspend;
 	volatile bool		c_lcdShouldToggle;
 
+	volatile bool		c_rightAngleEnabled;
+
+	volatile bool		c_isFetchingReadingAverage;
+	volatile bool		c_lcdShouldSuspend;
 	float				getStep();
 	int					getSign();
 private:

@@ -65,6 +65,12 @@ void Module::run()
 			break;
 		case LCD:
 			alternate = resources->config.c_lcdShouldToggle;
+			disable = resources->config.c_lcdShouldSuspend;
+			if(disable)
+				resources->config.c_lcdShouldToggle = alternate = false;
+			break;
+		case MAGNETIC_SENSOR:
+			alternate = resources->config.c_isFetchingReadingAverage;
 			break;
 		default:
 			break;

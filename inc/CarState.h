@@ -87,6 +87,7 @@ public:
 	void							updateSituation();
 #if	VERSION>=2L
 	float*							magneticSensorReading;
+	float*							magneticSensorReadingAverage;
 	int32_t							encoderCount;
 #endif
 #if STATE_HANDLING_ROUTINE == 1

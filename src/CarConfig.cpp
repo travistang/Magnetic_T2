@@ -54,9 +54,9 @@ CarConfig::CarConfig() :
 	c_servoAngleMultiplier = 6;
 	c_servoAngle = 900;
 	//TODO important :)
-	c_servoPIDControlVariable[0] = 750;
+	c_servoPIDControlVariable[0] = 665;
 	c_servoPIDControlVariable[1] = 0;
-	c_servoPIDControlVariable[2] = 1000;
+	c_servoPIDControlVariable[2] = 0;
 	c_servoPIDSp = 900;
 	//TODO important :)
 	c_motorPower = 120;
@@ -70,9 +70,9 @@ CarConfig::CarConfig() :
 //	c_magneticSensorTriggerThreshold= 	3;		//for [0,100]
 
 	c_motorPIDEnabled = 0;
-	c_motorPIDControlVariable[0] = 0.01;			//-0.006
+	c_motorPIDControlVariable[0] = 0.0006;			//-0.006
 	c_motorPIDControlVariable[1] = 0;
-	c_motorPIDControlVariable[2] = 0;
+	c_motorPIDControlVariable[2] = 0.0004;
 	c_motorPIDSp = 0;
 	//TODO important:)
 	c_motorPowerLowerBound = 0;
@@ -94,16 +94,20 @@ CarConfig::CarConfig() :
 	c_sensorSignalInvalidThreshold = 6;
 
 	//a
-	c_adaptiveKpParam = 550;
+	c_adaptiveKpParam = 595;
 	//b
-	c_adaptiveKpBaseParam = 845;
+	c_adaptiveKpBaseParam = 800;
 
-	c_targetEncoderCount = 26000;
+	c_targetEncoderCount = 13000;
 
 	c_motorShouldSuspend = true;
 	c_servoShouldSuspend = false;
 	c_lcdShouldToggle = false;
 	c_batteryVoltage = 8;
+
+	c_rightAngleEnabled = false;
+	c_isFetchingReadingAverage = false;
+	c_lcdShouldSuspend = false;
 }
 
 float				CarConfig::getStep()

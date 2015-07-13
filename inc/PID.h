@@ -274,7 +274,7 @@ private:
 		{
 			return;
 		}
-		resources->buzzer.buzz(1);
+		resources->buzzer.buzz();
 		//TODO important :)
 		float a = adaptivePFactor;
 //		if(!IN_RANGE(input,0,0.7)) a += 1600;
@@ -292,7 +292,7 @@ private:
 //		return;
 		if(resources->state.isStraightRoad())
 		{
-			kd += 1000;
+			kd += 8000;
 		}
 	}
 };

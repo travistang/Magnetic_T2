@@ -35,8 +35,10 @@ void MotorPID::updateMotorValue()
 	updateParams();
 
 	uint16_t dt = libsc::System::Time() - timer;
+	if(dt == 0)
+		dt = 1;
 	int32_t error = sp - resources->state.encoderCount;
-	int16_t result = (int16_t)resources->config.c_motorPower;
+	float result = (float)resources->config.c_motorPower;
 
 	result += kp*error;
 	result += kd*(error-lastError)/dt;

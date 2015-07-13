@@ -20,6 +20,7 @@ protected:
 	void	task();
 	void	loopWhileSuspension();
 	void	debugLoop();
+	void    alternateTask();
 private:
 //	MagneticSensor* sensor;
 	TMagneticSensor* sensor;

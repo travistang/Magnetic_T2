@@ -153,7 +153,7 @@ System::Init();
 			  ||&motorModule
 			  ||&encoderModule
 			  ||&lcdModule
-			  ||&bluetoothModule
+//			  ||&bluetoothModule
 //			  ||recordModule
 //			  ||yyModule
 			  ||&sensorModule;
@@ -162,7 +162,7 @@ System::Init();
 	/*
 	 * Module configuration
 	 */
-	~sensorModule;
+//	~sensorModule;
 	~servoModule;
 	 motorRef = &motorModule;
 	 motorModule.toggleAlternate();

@@ -14,7 +14,7 @@ using namespace libbase::k60;
 class TBuzzer {
 public:
 	TBuzzer();
-	void buzz(uint16_t interval=10);
+	void buzz(int times = 1);
 private:
 	Gpo gpo;
 };
