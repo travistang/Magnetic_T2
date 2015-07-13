@@ -55,7 +55,7 @@ void TLcdModule::loopWhileSuspension()
 #else
 		<<"FA:" <<resources->state.getFrontPairAvg()<< TLcd::endl
 		<<"OA:" <<resources->state.getOuterPairAvg()<< TLcd::endl
-		<< TLcd::endl << TLcd::endl
+		<< "T.EnC:" <<(int32_t)resources->config.c_motorPIDSp<< TLcd::endl
 		<< TLcd::endl <<TLcd::endl
 		<< TLcd::endl
 		<< TLcd::endl

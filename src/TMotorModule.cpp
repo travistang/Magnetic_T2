@@ -10,6 +10,10 @@ float abs(float const & x)
 {
     return ( x<0 ) ? -x : x;
 }
+int32_t abs(int32_t const & x)
+{
+	return (x<0) ? -x: x;
+}
 	libsc::DirMotor::DirMotor::Config getMotorConfig()
 	{
 		libsc::DirMotor::DirMotor::Config config;
@@ -94,7 +98,8 @@ void TMotorModule::task()
 //	uint16_t dif =  ABS(900-resources->config.c_servoAngle);
 //	float param  = 1;
 //	motor.SetPower(resources->config.c_motorPower/dif*param);
-	motor.setSpeedWithPID(resources->config.c_targetEncoderCount);
+//	motor.setSpeedWithPID(resources->config.c_targetEncoderCount);
+	motor.setSpeedWithPID(updateEncoderCountByAngle());
 	motor.tunePower(resources->state.encoderCount);
 	resources->config.c_motorPower = motor.GetPower();
 	//protection
@@ -148,7 +153,13 @@ void TMotorModule::alternateTask()
 //	MotorPid mmpid;
 //	mmpid.Result();
 //	motor.SetPower(resources->config.c_motorPower);
-
+	updateEncoderCountByAngle();
 	pid.updateMotorValue();
 	motor.SetPower(resources->config.c_motorPower);
+}
+int32_t TMotorModule::updateEncoderCountByAngle()
+{
+	float a = 20;
+	resources->config.c_motorPIDSp = resources->config.c_targetEncoderCount - a*abs(900-(resources->config.c_servoAngle));
+	return resources->config.c_motorPIDSp;
 }

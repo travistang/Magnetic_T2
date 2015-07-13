@@ -21,7 +21,8 @@ void MotorPID::updateParams()
 	kd = resources->config.c_motorPIDControlVariable[2];
 	lowerBound = resources->config.c_motorPowerLowerBound;
 	upperBound = resources->config.c_motorPowerUpperBound;
-	sp = resources->config.c_targetEncoderCount;
+//	sp = resources->config.c_targetEncoderCount;
+	sp = resources->config.c_motorPIDSp;
 }
 
 //void MotorPID::setTarget(int32_t targetCount)

@@ -59,7 +59,7 @@ public:
 
 	volatile bool 	  	c_motorPIDEnabled;
 	volatile float 	  	c_motorPIDControlVariable[3];
-	volatile float 	  	c_motorPIDSp;
+	volatile int32_t 	c_motorPIDSp;
 	volatile bool		c_motorPIDUseAutomat;
 	volatile uint16_t	c_motorPowerLowerBound;
 	volatile uint16_t	c_motorPowerUpperBound;

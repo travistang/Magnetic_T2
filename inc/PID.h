@@ -16,7 +16,7 @@
 #include <vector>
 #include <math.h>
 #include <Resources.h>
-#define ABS(a) ((a<0)?-a:a)
+#define ABS(a) ((a<0)?-(a):a)
 #define IN_RANGE(v,c,d) ((ABS(v-c)<=d)?1:0)
 class GeneralPID{
 public:
