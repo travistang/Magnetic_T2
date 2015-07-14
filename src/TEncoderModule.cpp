@@ -41,6 +41,7 @@ void TEncoderModule::debugLoop()
 void TEncoderModule::loopWhileSuspension()
 {
 	encoder.Update();
+	timer = libsc::System::Time();
 	resources->state.encoderCount=encoder.GetCount();
 }
 

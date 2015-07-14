@@ -12,6 +12,7 @@ class MotorPID {
 public:
 	MotorPID(Resources*);
 	void updateMotorValue();
+	void resetDt();
 //	void setTarget(int32_t);
 private:
 	void updateParams();

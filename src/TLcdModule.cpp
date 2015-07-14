@@ -74,7 +74,7 @@ void TLcdModule::alternateTask()
 #define SHOW_REF 0
 
 	lcd.setRow(0)
-#if SHOW_REF == 1
+#if SHOW_REF == 0
 			<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl
 			<< "1: "<< (float)resources->state.magneticSensorReading[1]<< TLcd::endl
 			<< "2: "<< (float)resources->state.magneticSensorReading[2]<< TLcd::endl

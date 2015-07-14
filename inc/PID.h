@@ -289,7 +289,7 @@ private:
 //			  c = 5;			//The width of the bell curve. Which is supposed to be small and it needs to be adjusted.
 //
 //		kd *= pow(E, -input* input/(2*c*c));	//the Gaussian curve, which is believed to suit the adapting D control value
-//		return;
+		return;
 		if(resources->state.isStraightRoad())
 		{
 			kd += 8000;

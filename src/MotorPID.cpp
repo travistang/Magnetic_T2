@@ -30,7 +30,10 @@ void MotorPID::updateParams()
 //	resources->config.c_targetEncoderCount() = targetCount;
 //	updateParams();
 //}
-
+void MotorPID::resetDt()
+{
+	timer = libsc::System::Time();
+}
 void MotorPID::updateMotorValue()
 {
 	updateParams();

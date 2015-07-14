@@ -58,6 +58,7 @@ void Module::run()
 	switch(this->type)
 	{
 		case MOTOR:
+		case ENCODER:
 			disable = resources->config.c_motorShouldSuspend;
 			break;
 		case SERVO:
