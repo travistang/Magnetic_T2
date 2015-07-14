@@ -16,6 +16,7 @@ public:
 //	void setTarget(int32_t);
 private:
 	void updateParams();
+	void useYY();
 
 	float kp;
 	float ki;
@@ -29,6 +30,12 @@ private:
 
 	uint16_t timer;
 	Resources* resources;
+
+	uint32_t dist;
+	uint16_t distancesp;
+	uint16_t initPower;
+	float yyparam;
+
 };
 
 #endif /* INC_MOTORPID_H_ */

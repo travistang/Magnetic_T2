@@ -59,7 +59,7 @@ CarConfig::CarConfig() :
 	c_servoPIDControlVariable[2] = 0;
 	c_servoPIDSp = 900;
 	//TODO important :)
-	c_motorPower = 120;
+	c_motorPower = 100;		//120
 
 	c_motorRotateClockwise = 0;
 
@@ -70,7 +70,7 @@ CarConfig::CarConfig() :
 //	c_magneticSensorTriggerThreshold= 	3;		//for [0,100]
 
 	c_motorPIDEnabled = 0;
-	c_motorPIDControlVariable[0] = 0.0006;			//-0.006
+	c_motorPIDControlVariable[0] = 0.001;			//-0.006
 	c_motorPIDControlVariable[1] = 0;
 	c_motorPIDControlVariable[2] = 0.0004;
 	c_motorPIDSp = 16000;
