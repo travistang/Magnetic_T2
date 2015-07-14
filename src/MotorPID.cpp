@@ -57,7 +57,7 @@ void MotorPID::useYY(){
 		else if((dist > distancesp - 50) && (dist < distancesp + 50)){
 			resources->config.c_motorPower = initPower;
 		}
-//		else if(dist >= distancesp + 50){
+//		else if(dist >= distancesp + 50 && dist <= 500){
 //			yyparam = 0.2;
 //			resources->config.c_motorPower = initPower + yyparam*(ABS(distancesp - dist));
 //			resources->config.c_targetEncoderCount = float(resources->config.c_motorPower/120.0f)*20000;
@@ -74,6 +74,7 @@ void MotorPID::resetDt()
 void MotorPID::updateMotorValue()
 {
 	updateParams();
+	useYY();
 
 	uint16_t dt = libsc::System::Time() - timer;
 	if(dt == 0)

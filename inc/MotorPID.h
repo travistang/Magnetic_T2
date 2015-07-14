@@ -8,6 +8,8 @@
 #ifndef INC_MOTORPID_H_
 #define INC_MOTORPID_H_
 #include "Resources.h"
+
+#define ABS(A)	(A<0? -A:A)
 class MotorPID {
 public:
 	MotorPID(Resources*);

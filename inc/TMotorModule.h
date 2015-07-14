@@ -30,6 +30,7 @@ private:
 	static void remoteListener(libbase::k60::Gpi* gpi);
 	int32_t updateEncoderCountByAngle();
 
+	MotorPID pid;
 
 };
 #endif

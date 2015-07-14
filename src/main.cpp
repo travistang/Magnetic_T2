@@ -147,15 +147,16 @@ System::Init();
 	TEncoderModule encoderModule(r);
 	TMotorModule motorModule(r);
 	TLcdModule lcdModule(r);
+	YuanYangModule yyModule(r);
 	sensorModule
 //			  ||stateHandlingModule
 			  ||&servoModule
+			  ||&yyModule
 			  ||&motorModule
 			  ||&encoderModule
 			  ||&lcdModule
 //			  ||&bluetoothModule
 //			  ||recordModule
-//			  ||yyModule
 			  ||&sensorModule;
 
 
