@@ -67,6 +67,7 @@ public:
 	TLcd &operator<<(const int8_t &b);
 	TLcd &operator<<(const int16_t &s);
 	TLcd &operator<<(const int32_t &i);
+	TLcd &operator<<(const bool &b);
 	LcdConsole* getLcdConsoleInstance();
 	TLcd* getTLcdInstance();
 private:

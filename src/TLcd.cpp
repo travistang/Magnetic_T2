@@ -225,3 +225,12 @@ TLcd &TLcd::operator<<(const int32_t &i)
 	m_console.WriteBuffer(buffer, n);
 	return *this;
 }
+
+TLcd &TLcd::operator<<(const bool &b)
+{
+	char buffer[20] = { 0 };
+	size_t n = sprintf(buffer, b?"true":"false");
+//		size_t n = sprintf(buffer, "%d", i);
+	m_console.WriteBuffer(buffer, n);
+	return *this;
+}
