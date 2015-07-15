@@ -29,14 +29,7 @@ private:
 	static libbase::k60::Gpi::Config getGpiConfig();
 	static void remoteListener(libbase::k60::Gpi* gpi);
 	int32_t updateEncoderCountByAngle();
-	int count;
-	float ee, le;
-	float ss;
-	float rr;
-	float pp;
-	float dd;
-	float ii;
-	TimerInt lt, vt;
+
 	MotorPID pid;
 
 };

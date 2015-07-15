@@ -23,6 +23,10 @@ void MotorPID::updateParams()
 	upperBound = resources->config.c_motorPowerUpperBound;
 //	sp = resources->config.c_targetEncoderCount;
 	sp = resources->config.c_motorPIDSp;
+	dist = resources->state.carDistance;
+	distancesp = 300;
+	initPower = resources->config.c_motorPower;
+	yyparam = 1;
 }
 
 //void MotorPID::setTarget(int32_t targetCount)
@@ -30,6 +34,39 @@ void MotorPID::updateParams()
 //	resources->config.c_targetEncoderCount() = targetCount;
 //	updateParams();
 //}
+void MotorPID::useYY(){
+	if(dist <= distancesp - 50 && dist >0)
+		{
+			//			if(dist <= 50){
+			//				buzz();
+			//				param = -1;
+			//			}
+			//			else if(dist <= 200){
+			//				buzz(10);
+			//				param = -;
+			//			}
+			//			else{
+			//				buzz(100);
+			//				param = -2.5;
+			//			}
+			resources->config.c_motorPower = 0;
+		//	resources->config.c_targetEncoderCount = 0;
+			resources->config.c_motorPIDSp = 0;
+			yyparam = 1.5;
+		}
+		else if((dist > distancesp - 50) && (dist < distancesp + 50)){
+			resources->config.c_motorPower = initPower;
+		}
+//		else if(dist >= distancesp + 50 && dist <= 500){
+//			yyparam = 0.2;
+//			resources->config.c_motorPower = initPower + yyparam*(ABS(distancesp - dist));
+//			resources->config.c_targetEncoderCount = float(resources->config.c_motorPower/120.0f)*20000;
+//		}
+		else
+			resources->config.c_motorPower = initPower;
+}
+
+
 void MotorPID::resetDt()
 {
 	timer = libsc::System::Time();
@@ -37,6 +74,7 @@ void MotorPID::resetDt()
 void MotorPID::updateMotorValue()
 {
 	updateParams();
+	useYY();
 
 	uint16_t dt = libsc::System::Time() - timer;
 	if(dt == 0)
