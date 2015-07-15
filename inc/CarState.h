@@ -101,12 +101,16 @@ public:
 	uint32_t			carDistance;
 #endif
 	float							getDif();
+	float							getAvg();
+
 	float 							getRightAngDif();
 	float 							getOuterPairAvg();
 	float							getFrontPairAvg();
 	float							getOuterPairDif();
 	float							getFrontPairDif();
+
 	bool 							isStraightRoad();
+	bool							isRightAngle();
 };
 
 #endif /* SRC_CARSTATE_H_ */

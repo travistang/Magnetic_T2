@@ -75,13 +75,20 @@ void TLcdModule::alternateTask()
 
 	lcd.setRow(0)
 #if SHOW_REF == 0
-			<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl
-			<< "1: "<< (float)resources->state.magneticSensorReading[1]<< TLcd::endl
-			<< "2: "<< (float)resources->state.magneticSensorReading[2]<< TLcd::endl
-			<< "3: "<< (float)resources->state.magneticSensorReading[3]<< TLcd::endl
-			<< "4: "<< (float)resources->state.magneticSensorReading[4]<< TLcd::endl
-			<< "5: "<< (float)resources->state.magneticSensorReading[5]<< TLcd::endl
+			<< "0: "<< (float)resources->state.magneticSensorReading[0]*resources->state.magneticSensorReadingAverage[0]<< TLcd::endl
+			<< "1: "<< (float)resources->state.magneticSensorReading[1]*resources->state.magneticSensorReadingAverage[1]<< TLcd::endl
+			<< "2: "<< (float)resources->state.magneticSensorReading[2]*resources->state.magneticSensorReadingAverage[2]<< TLcd::endl
+			<< "3: "<< (float)resources->state.magneticSensorReading[3]*resources->state.magneticSensorReadingAverage[3]<< TLcd::endl
+			<< "4: "<< (float)resources->state.magneticSensorReading[4]*resources->state.magneticSensorReadingAverage[4]<< TLcd::endl
+			<< "5: "<< (float)resources->state.magneticSensorReading[5]*resources->state.magneticSensorReadingAverage[5]<< TLcd::endl
+//		<< "0: "<< (float)resources->state.magneticSensorReading[0]<< TLcd::endl
+//					<< "1: "<< (float)resources->state.magneticSensorReading[1]<< TLcd::endl
+//					<< "2: "<< (float)resources->state.magneticSensorReading[2]<< TLcd::endl
+//					<< "3: "<< (float)resources->state.magneticSensorReading[3]<< TLcd::endl
+//					<< "4: "<< (float)resources->state.magneticSensorReading[4]<< TLcd::endl
+//					<< "5: "<< (float)resources->state.magneticSensorReading[5]<< TLcd::endl
 #else
+
 			<< "0: "<< (float)resources->state.magneticSensorReadingAverage[0]<< TLcd::endl
 			<< "1: "<< (float)resources->state.magneticSensorReadingAverage[1]<< TLcd::endl
 			<< "2: "<< (float)resources->state.magneticSensorReadingAverage[2]<< TLcd::endl

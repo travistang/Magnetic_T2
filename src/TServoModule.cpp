@@ -45,7 +45,7 @@ void TServoModule::loopWhileSuspension()
 			(resources->state.getOuterPairAvg())<0.8&&(resources->state.getOuterPairAvg())>-0.8
 			&&!resources->state.isStraightRoad())
 	{
-		buzz(3);
+//		buzz(3);
 		if(resources->state.getDif()<0)
 		{
 			servo.SetDegree(400);
@@ -56,6 +56,7 @@ void TServoModule::loopWhileSuspension()
 	}else
 	{
 #endif
+//		if(resources->state.isStraightRoad())buzz();
 		servo.pid.adaptivePFactor = resources->config.c_adaptiveKpParam;
 		servo.pid.adaptivePBaseFactor = resources->config.c_adaptiveKpBaseParam;
 		servo.SetDegreeWithPID(resources->state.getDif());

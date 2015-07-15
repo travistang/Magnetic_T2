@@ -94,9 +94,9 @@ CarConfig::CarConfig() :
 	c_sensorSignalInvalidThreshold = 6;
 
 	//a
-	c_adaptiveKpParam = 655;
+	c_adaptiveKpParam = 695;
 	//b
-	c_adaptiveKpBaseParam = 850;
+	c_adaptiveKpBaseParam = 915;
 
 	c_targetEncoderCount = 18000;
 

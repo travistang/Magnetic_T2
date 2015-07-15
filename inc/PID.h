@@ -274,7 +274,7 @@ private:
 		{
 			return;
 		}
-		resources->buzzer.buzz();
+//		resources->buzzer.buzz();
 		//TODO important :)
 		float a = adaptivePFactor;
 //		if(!IN_RANGE(input,0,0.7)) a += 1600;
