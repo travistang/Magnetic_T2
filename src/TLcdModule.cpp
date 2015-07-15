@@ -57,8 +57,8 @@ void TLcdModule::loopWhileSuspension()
 		<<"OA:" <<resources->state.getOuterPairAvg()<< TLcd::endl
 		<<"DA:" <<resources->state.getAvg() << TLcd::endl
 		<< "T.EnC:" <<(int32_t)resources->config.c_motorPIDSp<< TLcd::endl
-		<< "Pow:" <<resources->config.c_motorPower << TLcd::endl
-		<< "Ang.:" <<resources->config.c_servoAngle << TLcd::endl
+		<< "Pow:" <<(uint16_t)resources->config.c_motorPower << TLcd::endl
+		<< "Ang.:" <<(uint16_t)resources->config.c_servoAngle << TLcd::endl
 		<< "St.R.:"<<resources->state.isStraightRoad()<< TLcd::endl
 		<< "Rg.R.:"<<resources->state.isRightAngle() << TLcd::endl
 		<< TLcd::endl;

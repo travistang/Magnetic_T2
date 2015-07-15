@@ -206,15 +206,15 @@ float abs(float x)
 }
 bool CarState::isStraightRoad()
 {
-	return (ABS(getFrontPairDif())<0.15);
+	return (getFrontPairAvg()>0.8&&getFrontPairAvg()<3.5);
 //	float frontDif = getFrontPairDif();
-	float frontDif = abs(getFrontPairDif());
-	float dif = abs(getDif());
-	return (abs(frontDif-dif)<0.15f);
+//	float frontDif = abs(getFrontPairDif());
+//	float dif = abs(getDif());
+//	return (abs(frontDif-dif)<0.15f);
 //	return getOuterPairAvg()<=2.1;
 }
 bool CarState::isRightAngle()
 {
 	//TODO: is this correct?
-	return (getOuterPairDif()>3);
+	return (getFrontPairAvg()<0.8);
 }

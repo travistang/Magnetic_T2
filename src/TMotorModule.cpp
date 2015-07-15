@@ -78,7 +78,7 @@ void TMotorModule::debugLoop()
 void TMotorModule::loopWhileSuspension()
 {
 	motor.SetClockwise(!resources->config.c_motorRotateClockwise);
-	libsc::System::DelayMs(500);
+//	libsc::System::DelayMs(500);
 	motor.SetPower(0);
 	pid.resetDt();
 	lastPower=0;

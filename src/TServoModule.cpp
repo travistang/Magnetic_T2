@@ -41,12 +41,10 @@ void TServoModule::loopWhileSuspension()
 #ifdef RIGHT_ANGLE
 	//TODO important :)
 //	if(resources->state.isStraightRoad())buzz();
-	if(resources->config.c_rightAngleEnabled &&
-			(resources->state.getOuterPairAvg())<0.8&&(resources->state.getOuterPairAvg())>-0.8
-			&&!resources->state.isStraightRoad())
+	if(resources->state.isRightAngle())
 	{
 //		buzz(3);
-		if(resources->state.getDif()<0)
+		if(resources->state.getFrontPairDif()<0)
 		{
 			servo.SetDegree(400);
 		}else
