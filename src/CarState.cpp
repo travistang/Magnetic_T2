@@ -172,7 +172,7 @@ float CarState::getDif()
 }
 float CarState::getAvg()
 {
-	return (magneticSensorReading[0]-magneticSensorReading[1])/2;
+	return (magneticSensorReading[0]+magneticSensorReading[1])/2;
 }
 float CarState::getRightAngDif()
 {
@@ -206,15 +206,11 @@ float abs(float x)
 }
 bool CarState::isStraightRoad()
 {
-	return (getFrontPairAvg()>1&&getFrontPairAvg()<=2);
-//	float frontDif = getFrontPairDif();
-//	float frontDif = abs(getFrontPairDif());
-//	float dif = abs(getDif());
-//	return (abs(frontDif-dif)<0.15f);
-//	return getOuterPairAvg()<=2.1;
+	return (getOuterPairAvg()>=0.9&&getFrontPairAvg()<=40);
 }
 bool CarState::isRightAngle()
 {
 	//TODO: is this correct?
-	return (getOuterPairAvg()<0.2&&getFrontPairAvg()<2.0);
+//	return false;
+	return (getFrontPairAvg()<70&&getOuterPairAvg()<0.45);
 }

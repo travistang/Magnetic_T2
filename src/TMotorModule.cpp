@@ -117,7 +117,7 @@ void TMotorModule::alternateTask()
 }
 int32_t TMotorModule::updateEncoderCountByAngle()
 {
-	float a = 1;
+	float a = 0;
 	resources->config.c_motorPIDSp = resources->config.c_targetEncoderCount - a*abs(900-(resources->config.c_servoAngle));
 	return resources->config.c_motorPIDSp;
 }

@@ -79,6 +79,11 @@ void TMagneticSensorModule::alternateTask()
 	for(int i = 0; i < 6; i++)
 	{
 		sum[i] /= sampleCount ;
+		if(i == 2 || i == 3)
+		{
+			resources->state.magneticSensorReadingAverage[i] = 1;
+			continue;
+		}
 		resources->state.magneticSensorReadingAverage[i] = sum[i];
 	}
 	buzz(7);
