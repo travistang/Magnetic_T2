@@ -206,7 +206,7 @@ float abs(float x)
 }
 bool CarState::isStraightRoad()
 {
-	return (getFrontPairAvg()>0.8&&getFrontPairAvg()<3.5);
+	return (getFrontPairAvg()>1&&getFrontPairAvg()<=2);
 //	float frontDif = getFrontPairDif();
 //	float frontDif = abs(getFrontPairDif());
 //	float dif = abs(getDif());
@@ -216,5 +216,5 @@ bool CarState::isStraightRoad()
 bool CarState::isRightAngle()
 {
 	//TODO: is this correct?
-	return (getFrontPairAvg()<0.8);
+	return (getOuterPairAvg()<0.2&&getFrontPairAvg()<2.0);
 }

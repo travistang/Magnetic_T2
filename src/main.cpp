@@ -155,7 +155,7 @@ System::Init();
 			  ||&motorModule
 			  ||&encoderModule
 			  ||&lcdModule
-//			  ||&bluetoothModule
+			  ||&bluetoothModule
 //			  ||recordModule
 			  ||&sensorModule;
 

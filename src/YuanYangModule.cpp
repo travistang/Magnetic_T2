@@ -17,11 +17,11 @@ void YuanYangModule::task()
 {
 	if(sonic.is_valid())
 	{
-		resources->state.carDistance = sonic.distance();
-		uint16_t dist = resources->state.carDistance;
+		uint32_t dist = sonic.distance();
+		resources->state.carDistance = dist;
 		if(dist<300)
 		{
-			buzz();
+//			buzz();
 		}
 
 	}else

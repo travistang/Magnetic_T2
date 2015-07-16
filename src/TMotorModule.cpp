@@ -113,10 +113,11 @@ void TMotorModule::alternateTask()
 	updateEncoderCountByAngle();
 	pid.updateMotorValue();
 	motor.SetPower(resources->config.c_motorPower);
+	resources->config.c_motorPower = motor.GetPower();
 }
 int32_t TMotorModule::updateEncoderCountByAngle()
 {
-	float a = 23;
+	float a = 1;
 	resources->config.c_motorPIDSp = resources->config.c_targetEncoderCount - a*abs(900-(resources->config.c_servoAngle));
 	return resources->config.c_motorPIDSp;
 }

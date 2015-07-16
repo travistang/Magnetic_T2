@@ -90,14 +90,14 @@ public:
 											//the error will be positive. so that the proportional
 											//controller will compensate the error by adding the differences
 						B result = defaultResult;
-//						if(useAutomat)
-//						{
-//							for(int i = 0; i< m_automatList.size();i++)
-//							{
-//									m_automatList[i](error,m_kp,m_ki,m_kd);
-//														// The automats are supposed to alter the control variables and thus the tuned value.
-//							}
-//						}
+						if(useAutomat)
+						{
+							for(int i = 0; i< m_automatList.size();i++)
+							{
+									m_automatList[i](error,m_kp,m_ki,m_kd);
+														// The automats are supposed to alter the control variables and thus the tuned value.
+							}
+						}
 						/*
 						 * main procedure: calculate tuned result
 						 */
@@ -275,6 +275,7 @@ private:
 			return;
 		}
 //		resources->buzzer.buzz();
+//		resources->config.c_lcdShouldToggle = true;
 		//TODO important :)
 		float a = adaptivePFactor;
 //		if(!IN_RANGE(input,0,0.7)) a += 1600;
@@ -289,10 +290,9 @@ private:
 //			  c = 5;			//The width of the bell curve. Which is supposed to be small and it needs to be adjusted.
 //
 //		kd *= pow(E, -input* input/(2*c*c));	//the Gaussian curve, which is believed to suit the adapting D control value
-		return;
 		if(resources->state.isStraightRoad())
 		{
-			kd += 8000;
+			kd += 1000;
 		}
 	}
 };
